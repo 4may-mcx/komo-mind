@@ -1,4 +1,4 @@
-import Typography from "@/components/ui/typography";
+import Typography from "@/components/typography";
 import Link from "next/link";
 
 export const LinkCard = ({

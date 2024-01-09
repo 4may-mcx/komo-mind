@@ -1,15 +1,15 @@
-import { LinkCard } from "./_components/card";
-const Navigator = () => {
+import { LinkCard } from "./_components/link-card";
+const NavigatorPage = () => {
   const cards = [
     {
       title: "文档",
       content: "在线文档",
-      url: "documents",
+      url: "/documents",
     },
     {
       title: "权限",
       content: "权限管理配置中心",
-      url: "control",
+      url: "/permission",
     },
   ];
   return (
@@ -23,4 +23,4 @@ const Navigator = () => {
   );
 };
 
-export default Navigator;
+export default NavigatorPage;
