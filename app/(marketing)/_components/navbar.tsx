@@ -9,9 +9,11 @@ import { useConvexAuth } from "convex/react";
 import Link from "next/link";
 import { ModeToggle } from "../../../components/mode-toggle";
 import { Logo } from "./logo";
+import { usePathname } from "next/navigation";
 
 export const NavBar = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
+  const pathname = usePathname();
   const scrolled = useScrollTop();
   return (
     <div
@@ -26,9 +28,11 @@ export const NavBar = () => {
           <Spinner />
         ) : isAuthenticated ? (
           <>
-            <Button variant="ghost" size="sm" asChild>
-              <Link href="/navigator">Enter Komo</Link>
-            </Button>
+            {pathname !== "/navigator" && (
+              <Button variant="ghost" size="sm" asChild>
+                <Link href="/navigator">Enter kOMO</Link>
+              </Button>
+            )}
             <UserButton afterSignOutUrl="/" />
           </>
         ) : (
