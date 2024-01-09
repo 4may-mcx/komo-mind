@@ -8,11 +8,17 @@ const NavigatorPage = () => {
       url: "/documents",
     },
     {
+      title: "音乐",
+      content: "一个音乐播放器",
+      url: "/music",
+    },
+    {
       title: "权限",
       content: (
         <>
-          <p>权限管理配置中心</p>
-          <p>{"用户 -> 角色 -> 权限"}</p>
+          权限管理配置中心
+          <br />
+          {"用户 -> 角色 -> 权限"}
         </>
       ),
       url: "/permission",
