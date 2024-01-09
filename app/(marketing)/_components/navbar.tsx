@@ -27,7 +27,7 @@ export const NavBar = () => {
         ) : isAuthenticated ? (
           <>
             <Button variant="ghost" size="sm" asChild>
-              <Link href="/documents">Enter Komo</Link>
+              <Link href="/navigator">Enter Komo</Link>
             </Button>
             <UserButton afterSignOutUrl="/" />
           </>

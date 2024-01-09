@@ -10,7 +10,7 @@ import { SignInButton } from "@clerk/clerk-react";
 export const Heading = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
   return (
-    <div className="max-w-3xl space-y-4">
+    <div className="max-w-3xl space-y-4 mt-32">
       <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold">
         Your Ideas, Documents, & Plans. Unified. Welcome to{" "}
         <span className="underline">KOMO</span>
@@ -24,7 +24,7 @@ export const Heading = () => {
           <Spinner size="lg" />
         ) : isAuthenticated ? (
           <Button asChild>
-            <Link href="/documents">
+            <Link href="/navigator">
               Enter your mind <ArrowRight className="h-4 w-4 ml-2" />
             </Link>
           </Button>
