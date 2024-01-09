@@ -9,7 +9,12 @@ const NavigatorPage = () => {
     },
     {
       title: "权限",
-      content: "权限管理配置中心",
+      content: (
+        <>
+          <p>权限管理配置中心</p>
+          <p>{"用户 -> 角色 -> 权限"}</p>
+        </>
+      ),
       url: "/permission",
     },
   ];

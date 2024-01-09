@@ -7,7 +7,7 @@ export const LinkCard = ({
   url,
 }: {
   title: string;
-  content: string;
+  content: string | React.ReactNode;
   url: string;
 }) => {
   return (
