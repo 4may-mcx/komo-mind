@@ -10,11 +10,14 @@ import Link from "next/link";
 import { ModeToggle } from "../../../components/mode-toggle";
 import { Logo } from "./logo";
 import { usePathname } from "next/navigation";
+import { useAuthModal } from "@/hooks/use-auth-modal";
 
 export const NavBar = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
   const pathname = usePathname();
   const scrolled = useScrollTop();
+
+  const { onOpen } = useAuthModal();
   return (
     <div
       className={cn(
@@ -23,6 +26,9 @@ export const NavBar = () => {
       )}
     >
       <Logo />
+      <Button className="ml-4" variant="ghost" onClick={onOpen}>
+        Supabase Login
+      </Button>
       <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
         {isLoading ? (
           <Spinner />

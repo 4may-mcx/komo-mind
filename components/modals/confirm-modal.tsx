@@ -13,24 +13,11 @@ import {
 } from "@components/ui/alert-dialog";
 
 interface ConfirmModalProps {
-  // title: string;
-  // description: string;
-  // confirmLabel: string;
-  // cancelLabel: string;
-  // onCancel: () => void;
   onConfirm: () => void;
   children: React.ReactNode;
 }
 
-export const ConfirmModal = ({
-  // title,
-  // description,
-  // confirmLabel,
-  // cancelLabel,
-  // onCancel,
-  onConfirm,
-  children,
-}: ConfirmModalProps) => {
+export const ConfirmModal = ({ onConfirm, children }: ConfirmModalProps) => {
   const handleConfirm = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
