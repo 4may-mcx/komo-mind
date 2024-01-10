@@ -93,9 +93,7 @@ function TypographyLarge({ children, className }: TypographyProps) {
 
 function TypographySmall({ children, className }: TypographyProps) {
   return (
-    <small className={cn("text-sm font-medium leading-none", className)}>
-      {children}
-    </small>
+    <small className={cn("text-sm leading-none", className)}>{children}</small>
   );
 }
 
