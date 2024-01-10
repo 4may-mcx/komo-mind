@@ -6,6 +6,7 @@ import {
   Disc2,
   File,
   ListMusic,
+  ListTodo,
   Mic2,
   MousePointerSquare,
   Music3,
@@ -40,8 +41,8 @@ const SideBarItem = ({
   return (
     <div
       className={cn(
-        "flex items-center space-x-2 cursor-pointer px-4 py-2 w-52 rounded-lg hover:bg-neutral-100 hover:translate-x-1 duration-300",
-        isActive && "bg-neutral-100"
+        "flex items-center space-x-2 cursor-pointer px-4 py-2 w-52 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-600 hover:translate-x-1 duration-300",
+        isActive && "bg-neutral-100 dark:bg-neutral-600"
       )}
     >
       {icon}
@@ -92,6 +93,11 @@ export const MusicSideBar = () => {
           title: "Albums",
           icon: <IconWrapper Icon={Disc2} />,
           path: "/music/albums",
+        },
+        {
+          title: "Todo",
+          icon: <IconWrapper Icon={ListTodo} />,
+          path: "/music/todo",
         },
       ],
     },

@@ -1,11 +1,12 @@
 import { ConvexClientProvider } from "@/providers/convex-provider";
+import ModalProvider from "@/providers/modal-provider";
 import SupabaseProvider from "@/providers/supabase-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import UserProvider from "@/providers/user-provider";
+import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import "./globals.css";
-import ModalProvider from "@/providers/modal-provider";
 
 export const metadata: Metadata = {
   title: "komo-mind",
@@ -25,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={GeistSans.className} suppressHydrationWarning>
       <body>
         <SupabaseProvider>
           <ConvexClientProvider>
