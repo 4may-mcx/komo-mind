@@ -18,12 +18,20 @@ import { useRouter } from "next/navigation";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useAuthModal } from "@/hooks/use-auth-modal";
+import { useEffect } from "react";
 
 export const AuthModal = () => {
   const supabaseClient = useSupabaseClient();
   const router = useRouter();
   const { session } = useSessionContext();
   const { onClose, isOpen } = useAuthModal();
+
+  useEffect(() => {
+    if (session) {
+      router.refresh();
+      onClose();
+    }
+  }, [onClose, router, session]);
 
   const onChange = (open: boolean) => {
     if (!open) {
@@ -36,10 +44,10 @@ export const AuthModal = () => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>注册&登入</AlertDialogTitle>
-          <AlertDialogDescription>login your account</AlertDialogDescription>
+          <AlertDialogDescription>登入你的账号</AlertDialogDescription>
         </AlertDialogHeader>
         <Auth
-          providers={["github"]}
+          providers={[]}
           supabaseClient={supabaseClient}
           appearance={{
             theme: ThemeSupa,

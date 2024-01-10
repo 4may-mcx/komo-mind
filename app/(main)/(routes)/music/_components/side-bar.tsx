@@ -40,7 +40,7 @@ const SideBarItem = ({
   return (
     <div
       className={cn(
-        "flex items-center space-x-2 cursor-pointer px-4 py-2 w-52 rounded-lg hover:bg-neutral-100",
+        "flex items-center space-x-2 cursor-pointer px-4 py-2 w-52 rounded-lg hover:bg-neutral-100 hover:translate-x-1 duration-300",
         isActive && "bg-neutral-100"
       )}
     >
@@ -101,7 +101,7 @@ export const MusicSideBar = () => {
         {
           title: "Recently Played",
           icon: <IconWrapper Icon={ListMusic} />,
-          path: "recently-played",
+          path: "/music/recently-played",
         },
         {
           title: "Liked Songs",
