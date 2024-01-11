@@ -2,32 +2,9 @@
 
 import Typography from "@/components/typography";
 import { cn } from "@/lib/utils";
-import {
-  Disc2,
-  File,
-  ListMusic,
-  ListTodo,
-  Mic2,
-  MousePointerSquare,
-  Music3,
-  PlaySquare,
-  Radio,
-  Star,
-} from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { ComponentType, FC, ReactNode } from "react";
-
-interface IconProps {
-  className?: string;
-}
-
-interface IconWrapperProps {
-  Icon: ComponentType<IconProps>;
-}
-
-const IconWrapper: FC<IconWrapperProps> = ({ Icon }) => {
-  return <Icon className="w-4 h-4" />;
-};
+import { ReactNode } from "react";
+import { SideBarList } from "./config";
 
 const SideBarItem = ({
   icon,
@@ -55,87 +32,9 @@ export const MusicSideBar = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const options = [
-    {
-      title: "Discover",
-      children: [
-        {
-          title: "Listen Now",
-          icon: <IconWrapper Icon={PlaySquare} />,
-          path: "/music/listening-now",
-        },
-        {
-          title: "Browse",
-          icon: <IconWrapper Icon={MousePointerSquare} />,
-          path: "/music/browse",
-        },
-        {
-          title: "Radio",
-          icon: <IconWrapper Icon={Radio} />,
-          path: "/music/radio",
-        },
-      ],
-    },
-    {
-      title: "Library",
-      children: [
-        {
-          title: "Songs",
-          icon: <IconWrapper Icon={Music3} />,
-          path: "/music/songs",
-        },
-        {
-          title: "Artists",
-          icon: <IconWrapper Icon={Mic2} />,
-          path: "/music/artists",
-        },
-        {
-          title: "Albums",
-          icon: <IconWrapper Icon={Disc2} />,
-          path: "/music/albums",
-        },
-        {
-          title: "Todo",
-          icon: <IconWrapper Icon={ListTodo} />,
-          path: "/music/todo",
-        },
-      ],
-    },
-    {
-      title: "PlayList",
-      children: [
-        {
-          title: "Recently Played",
-          icon: <IconWrapper Icon={ListMusic} />,
-          path: "/music/recently-played",
-        },
-        {
-          title: "Liked Songs",
-          icon: <IconWrapper Icon={ListMusic} />,
-          path: "/music/liked-songs",
-        },
-        {
-          title: "Top Songs",
-          icon: <IconWrapper Icon={ListMusic} />,
-          path: "/music/top-songs",
-        },
-        {
-          title: "Top Artists",
-          icon: <IconWrapper Icon={ListMusic} />,
-          path: "/music/top-artists",
-        },
-        {
-          title: "Top Albums",
-          icon: <IconWrapper Icon={ListMusic} />,
-          path: "/music/top-albums",
-        },
-      ],
-    },
-  ];
-
   return (
     <div className="flex flex-col">
-      {options.map(({ title, children }) => (
+      {SideBarList.map(({ title, children }) => (
         <div key={title} className="m-4">
           <Typography.Large className="ml-4">{title}</Typography.Large>
           {children.map(({ title, icon, path }, index) => (
