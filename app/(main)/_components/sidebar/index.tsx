@@ -30,12 +30,12 @@ const list = [
     path: "/music",
   },
   {
-    name: "permission",
+    name: "Permission",
     icon: <Joystick />,
     path: "/permission",
   },
   {
-    name: "chat",
+    name: "Chat",
     icon: <MessageCircleMore />,
     path: "/chat",
   },
