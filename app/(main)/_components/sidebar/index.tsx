@@ -2,7 +2,13 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import Typography from "@/components/typography";
 import { cn } from "@/lib/utils";
-import { Book, HomeIcon, Joystick, Music2Icon } from "lucide-react";
+import {
+  Book,
+  HomeIcon,
+  Joystick,
+  MessageCircleMore,
+  Music2Icon,
+} from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { MAX_RESIZE_WIDTH, MIN_RESIZE_WIDTH } from "./constant";
 import { SidebarContainer } from "./sidebar-container";
@@ -28,6 +34,11 @@ const list = [
     icon: <Joystick />,
     path: "/permission",
   },
+  {
+    name: "chat",
+    icon: <MessageCircleMore />,
+    path: "/chat",
+  },
 ];
 
 export const Sidebar = () => {
@@ -36,8 +47,8 @@ export const Sidebar = () => {
 
   return (
     <SidebarContainer>
-      {(width) => {
-        const isClosed = Number(width?.slice(0, -2)) < MIN_RESIZE_WIDTH;
+      {() => {
+        // const isClosed = Number(width?.slice(0, -2)) < MIN_RESIZE_WIDTH;
 
         return (
           <div className="h-full pt-1 px-2 flex flex-col items-center gap-y-2 overflow-hidden">
@@ -54,7 +65,8 @@ export const Sidebar = () => {
                 key={item.name}
               >
                 <span className="mr-3">{item.icon}</span>
-                {!isClosed && <Typography.Small>{item.name}</Typography.Small>}
+                {/* {!isClosed && <Typography.Small>{item.name}</Typography.Small>} */}
+                <Typography.Small>{item.name}</Typography.Small>
               </div>
             ))}
           </div>
