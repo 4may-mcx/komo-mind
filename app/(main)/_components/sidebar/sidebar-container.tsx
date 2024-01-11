@@ -45,7 +45,12 @@ export const SidebarContainer = ({ children }: { children: ReactNode }) => {
     if (sidebarRef.current) {
       setIsResetting(true);
 
-      sidebarRef.current.style.width = isMobile ? "100%" : `${MIN_WIDTH}px`;
+      const currentWidth = sidebarRef.current.style.width;
+      if (currentWidth === MIN_WIDTH + "px") {
+        sidebarRef.current.style.width = MAX_WIDTH + "px";
+      } else {
+        sidebarRef.current.style.width = isMobile ? "100%" : `${MIN_WIDTH}px`;
+      }
     }
     setTimeout(() => setIsResetting(false), 300);
   };
@@ -58,7 +63,7 @@ export const SidebarContainer = ({ children }: { children: ReactNode }) => {
           width: MAX_WIDTH + "px",
         }}
         className={cn(
-          "h-full overflow-y-auto relative flex flex-col z-[99999]",
+          "h-full overflow-y-auto relative flex flex-col",
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "w-0"
         )}
@@ -68,8 +73,10 @@ export const SidebarContainer = ({ children }: { children: ReactNode }) => {
         <div
           onClick={resetWidth}
           onMouseDown={handleMouseDown}
-          className="transition cursor-ew-resize absolute h-full w-2 border-r-[1px] border-neutral-300 right-0 top-0"
-        />
+          className="flex items-center transition absolute h-full cursor-ew-resize w-2 border-r-[1px] border-neutral-300 right-0 top-0"
+        >
+          {/* 考虑往这里加个icon方便拖拽，然后去掉上面的w-2 */}
+        </div>
       </aside>
     </>
   );
