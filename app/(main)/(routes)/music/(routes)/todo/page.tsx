@@ -1,9 +1,5 @@
 const TodoPage = () => {
-  return (
-    <div>
-      <p>完善滚动条</p>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default TodoPage;
