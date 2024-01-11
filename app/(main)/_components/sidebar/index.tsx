@@ -4,7 +4,7 @@ import Typography from "@/components/typography";
 import { cn } from "@/lib/utils";
 import { Book, HomeIcon, Joystick, Music2Icon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { MAX_RESIZE_WIDTH } from "./constant";
+import { MAX_RESIZE_WIDTH, MIN_RESIZE_WIDTH } from "./constant";
 import { SidebarContainer } from "./sidebar-container";
 
 const list = [
@@ -37,7 +37,7 @@ export const Sidebar = () => {
   return (
     <SidebarContainer>
       {(width) => {
-        const isExpend = Number(width?.slice(0, -2)) > MAX_RESIZE_WIDTH;
+        const isClose = Number(width?.slice(0, -2)) < MIN_RESIZE_WIDTH;
 
         return (
           <div className="h-full pt-1 px-2 flex flex-col items-center gap-y-2 overflow-hidden">
@@ -54,7 +54,7 @@ export const Sidebar = () => {
                 key={item.name}
               >
                 <span className="mr-3">{item.icon}</span>
-                {isExpend && <Typography.Small>{item.name}</Typography.Small>}
+                {!isClose && <Typography.Small>{item.name}</Typography.Small>}
               </div>
             ))}
           </div>
