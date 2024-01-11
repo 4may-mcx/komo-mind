@@ -17,6 +17,7 @@ interface ConfirmModalProps {
   children: React.ReactNode;
 }
 
+// todo: 使用 CommonModal
 export const ConfirmModal = ({ onConfirm, children }: ConfirmModalProps) => {
   const handleConfirm = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>

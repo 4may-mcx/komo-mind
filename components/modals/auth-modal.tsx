@@ -1,24 +1,15 @@
 "use client";
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@components/ui/alert-dialog";
+import { useAuthModal } from "@/hooks/use-auth-modal";
 import {
   useSessionContext,
   useSupabaseClient,
 } from "@supabase/auth-helpers-react";
-import { useRouter } from "next/navigation";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { useAuthModal } from "@/hooks/use-auth-modal";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import CommonModal from "./common-modal";
 
 export const AuthModal = () => {
   const supabaseClient = useSupabaseClient();
@@ -33,38 +24,28 @@ export const AuthModal = () => {
     }
   }, [onClose, router, session]);
 
-  const onChange = (open: boolean) => {
-    if (!open) {
-      onClose();
-    }
-  };
-
   return (
-    <AlertDialog open={isOpen} defaultOpen={isOpen} onOpenChange={onChange}>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>注册&登入</AlertDialogTitle>
-          <AlertDialogDescription>登入你的账号</AlertDialogDescription>
-        </AlertDialogHeader>
-        <Auth
-          providers={[]}
-          supabaseClient={supabaseClient}
-          appearance={{
-            theme: ThemeSupa,
-            variables: {
-              default: {
-                colors: {
-                  brand: "#000",
-                  brandAccent: "#ccc",
-                },
+    <CommonModal
+      isOpen={isOpen}
+      title="注册&登入"
+      description="登入你的账号"
+      onCancel={onClose}
+    >
+      <Auth
+        providers={[]}
+        supabaseClient={supabaseClient}
+        appearance={{
+          theme: ThemeSupa,
+          variables: {
+            default: {
+              colors: {
+                brand: "#000",
+                brandAccent: "#ccc",
               },
             },
-          }}
-        />
-        <AlertDialogCancel onClick={(e) => e.stopPropagation()}>
-          取消
-        </AlertDialogCancel>
-      </AlertDialogContent>
-    </AlertDialog>
+          },
+        }}
+      />
+    </CommonModal>
   );
 };

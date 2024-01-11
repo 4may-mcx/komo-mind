@@ -28,7 +28,7 @@ const SongsPage = () => {
           </div>
           <PlusSquare
             onClick={handleAdd}
-            className="h-4 w-4 cursor-pointer hover:h-6 hover:w-6 hover:translate-x-1 duration-500"
+            className="h-4 w-4 cursor-pointer hover:animate-bounce"
           />
         </div>
         <div className="h-full w-full p-2 gap-y-2 flex-grow overflow-y-scroll scroll-m-1"></div>
