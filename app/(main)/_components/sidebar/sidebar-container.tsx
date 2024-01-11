@@ -1,17 +1,17 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ElementRef, ReactNode, useRef, useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
+import { ElementRef, FC, ReactNode, useRef, useState } from "react";
+import {
+  MAX_WIDTH,
+  MIN_WIDTH,
+  MAX_RESIZE_WIDTH,
+  MIN_RESIZE_WIDTH,
+} from "./constant";
 
-const MIN_WIDTH = 50;
-const MAX_WIDTH = 240;
-const MIN_RESIZE_WIDTH = 80;
-const MAX_RESIZE_WIDTH = 180;
-
-export const SidebarContainer = ({ children }: { children: ReactNode }) => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
-
+export const SidebarContainer: FC<{
+  children: (width?: string) => ReactNode;
+}> = ({ children }) => {
   const isResizingRef = useRef(false);
   const resizeStateRef = useRef({
     width: MAX_WIDTH,
@@ -91,34 +91,31 @@ export const SidebarContainer = ({ children }: { children: ReactNode }) => {
       if (currentWidth === MIN_WIDTH + "px") {
         sidebarRef.current.style.width = MAX_WIDTH + "px";
       } else {
-        sidebarRef.current.style.width = isMobile ? "100%" : `${MIN_WIDTH}px`;
+        sidebarRef.current.style.width = MIN_WIDTH + "px";
       }
     }
   };
 
   return (
-    <>
-      <aside
-        ref={sidebarRef}
-        style={{
-          width: MAX_WIDTH + "px",
-        }}
-        className={cn(
-          "h-full overflow-y-auto relative flex flex-col",
-          isResetting && "transition-all ease-in-out duration-200",
-          isMobile && "w-0"
-        )}
-      >
-        <nav>{children}</nav>
+    <aside
+      ref={sidebarRef}
+      style={{
+        width: MAX_WIDTH + "px",
+      }}
+      className={cn(
+        "h-full overflow-y-auto relative flex flex-col",
+        isResetting && "transition-all ease-in-out duration-200"
+      )}
+    >
+      <nav>{children(sidebarRef.current?.style.width)}</nav>
 
-        <div
-          onClick={resetWidth}
-          onMouseDown={handleMouseDown}
-          className="flex items-center transition absolute h-full cursor-ew-resize w-2 border-r-[1px] border-neutral-300 right-0 top-0"
-        >
-          {/* 考虑往这里加个icon方便拖拽，然后去掉上面的w-2 */}
-        </div>
-      </aside>
-    </>
+      <div
+        onClick={resetWidth}
+        onMouseDown={handleMouseDown}
+        className="flex items-center transition absolute h-full cursor-ew-resize w-2 border-r-[1px] border-neutral-300 right-0 top-0"
+      >
+        {/* 考虑往这里加个icon方便拖拽，然后去掉上面的w-2 */}
+      </div>
+    </aside>
   );
 };
