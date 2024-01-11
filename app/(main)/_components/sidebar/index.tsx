@@ -4,8 +4,8 @@ import Typography from "@/components/typography";
 import { cn } from "@/lib/utils";
 import { Book, HomeIcon, Joystick, Music2Icon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { SidebarContainer } from "./sidebar-container";
 import { MAX_RESIZE_WIDTH } from "./constant";
+import { SidebarContainer } from "./sidebar-container";
 
 const list = [
   {
