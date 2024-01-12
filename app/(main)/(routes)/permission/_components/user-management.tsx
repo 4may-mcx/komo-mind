@@ -1,4 +1,5 @@
 import BaseTable, { BaseTableColumnsType } from "@/components/base-table";
+import { Button } from "@/components/ui/button";
 
 interface UserManagementType {
   userName: string;
@@ -26,7 +27,6 @@ const columns: BaseTableColumnsType<UserManagementType>[] = [
   {
     title: "用户名",
     dataIndex: "userName",
-    width: "50px",
     render: (userName, record) => (
       <>
         {userName}({record.phone})
@@ -51,9 +51,21 @@ const columns: BaseTableColumnsType<UserManagementType>[] = [
 ];
 
 export const UserManagementTable = () => {
+  const _columns = [
+    ...columns,
+    {
+      title: "操作",
+      render: () => (
+        <>
+          <Button variant="ghost">编辑</Button>
+          <Button variant="ghost">清空权限</Button>
+        </>
+      ),
+    },
+  ];
   return (
     <BaseTable
-      columns={columns}
+      columns={_columns}
       dataSource={mockData}
       rowKey={(record) => record.userName}
     />

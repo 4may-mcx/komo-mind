@@ -6,6 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
 export interface BaseTableColumnsType<T, K extends keyof T = any> {
@@ -20,9 +21,10 @@ export interface BaseTableProps<T = any, K extends keyof T = any> {
   rowKey: (record: T) => string;
   dataSource: T[];
   columns: BaseTableColumnsType<T, K>[];
+  border?: boolean;
 }
 
-const BaseTable = ({ dataSource, columns, rowKey }: BaseTableProps) => {
+const BaseTable = ({ dataSource, columns, rowKey, border }: BaseTableProps) => {
   return (
     <Table>
       <TableHeader>
@@ -31,8 +33,9 @@ const BaseTable = ({ dataSource, columns, rowKey }: BaseTableProps) => {
             <TableHead
               style={{
                 textAlign: align || "center",
-                width: width,
+                width,
               }}
+              className={cn(border && "border", "p-1")}
               key={`${title}-${index}`}
             >
               {title}
@@ -49,8 +52,9 @@ const BaseTable = ({ dataSource, columns, rowKey }: BaseTableProps) => {
                 const value = !!dataIndex ? item[dataIndex] : "";
                 return (
                   <TableCell
-                    style={{ textAlign: align || "center", width }}
                     key={`${_rowKey}-${index}`}
+                    style={{ textAlign: align || "center", width }}
+                    className={cn(border && "border", "p-1")}
                   >
                     {typeof render === "function" ? render(value, item) : value}
                   </TableCell>
