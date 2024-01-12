@@ -1,87 +1,61 @@
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import BaseTable, { BaseTableColumnsType } from "@/components/base-table";
 
-const invoices = [
+interface UserManagementType {
+  userName: string;
+  root: boolean;
+  email: string;
+  phone: string;
+}
+
+const mockData = [
   {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
+    userName: "xmc",
+    root: true,
+    email: "1522928438@qq.com",
+    phone: "1092381902",
   },
   {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
+    userName: "fhf",
+    root: false,
+    email: "1522928438@qq.com",
+    phone: "1482381129",
   },
 ];
 
-export const UserManagement = () => {
+const columns: BaseTableColumnsType<UserManagementType>[] = [
+  {
+    title: "用户名",
+    dataIndex: "userName",
+    width: "50px",
+    render: (userName, record) => (
+      <>
+        {userName}({record.phone})
+      </>
+    ),
+  },
+  {
+    title: "超级管理员",
+    dataIndex: "root",
+    render: (root) => (root ? "是" : "否"),
+  },
+  {
+    title: "邮箱",
+    dataIndex: "email",
+    render: (email) => <>{email}</>,
+  },
+  {
+    title: "手机号",
+    dataIndex: "phone",
+    render: (phone) => <>{phone}</>,
+  },
+];
+
+export const UserManagementTable = () => {
   return (
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium">{invoice.invoice}</TableCell>
-            <TableCell>{invoice.paymentStatus}</TableCell>
-            <TableCell>{invoice.paymentMethod}</TableCell>
-            <TableCell className="text-right">{invoice.totalAmount}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className="text-right">$2,500.00</TableCell>
-        </TableRow>
-      </TableFooter>
-    </Table>
+    <BaseTable
+      columns={columns}
+      dataSource={mockData}
+      rowKey={(record) => record.userName}
+    />
   );
 };

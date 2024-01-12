@@ -1,11 +1,16 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export const TabsWithOptions = ({
+export interface BaseTabType {
+  title: string;
+  render: React.ReactNode;
+}
+
+const BaseTabs = ({
   defaultActiveTab,
   options,
 }: {
   defaultActiveTab?: string;
-  options: Array<{ title: string; render: React.ReactNode }>;
+  options: BaseTabType[];
 }) => {
   const _activeTab = defaultActiveTab || options[0].title;
   return (
@@ -25,3 +30,5 @@ export const TabsWithOptions = ({
     </Tabs>
   );
 };
+
+export default BaseTabs;

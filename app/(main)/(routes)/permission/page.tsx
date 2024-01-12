@@ -1,11 +1,11 @@
+import BaseTabs, { BaseTabType } from "@/components/base-tabs";
 import { PageLayout } from "@/components/page-layout";
-import { TabsWithOptions } from "@/components/tabs-with-options";
-import { UserManagement } from "./_components/user-management";
+import { UserManagementTable } from "./_components/user-management";
 
-const options = [
+const options: BaseTabType[] = [
   {
     title: "用户管理",
-    render: <UserManagement />,
+    render: <UserManagementTable />,
   },
   {
     title: "资源管理",
@@ -24,7 +24,7 @@ const options = [
 const PermissionPage = () => {
   return (
     <PageLayout title="权限管理" separator={<hr className="my-4" />}>
-      <TabsWithOptions options={options} />
+      <BaseTabs options={options} />
     </PageLayout>
   );
 };
