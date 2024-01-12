@@ -23,7 +23,7 @@ const SideBarItem = ({
       )}
     >
       {icon}
-      <Typography.Small className="truncate">{title}</Typography.Small>
+      <Typography.Small className="">{title}</Typography.Small>
     </div>
   );
 };
