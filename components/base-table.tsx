@@ -11,20 +11,25 @@ import { ReactNode } from "react";
 
 export interface BaseTableColumnsType<T, K extends keyof T = any> {
   title: string;
-  render: (data: K, record: T) => ReactNode | Element;
+  render?: (data: T[K], record: T) => ReactNode | Element;
   align?: "left" | "center" | "right";
   width?: string;
   dataIndex?: keyof T;
 }
 
-export interface BaseTableProps<T = any, K extends keyof T = any> {
+export interface BaseTableProps<T, K extends keyof T> {
   rowKey: (record: T) => string;
   dataSource: T[];
   columns: BaseTableColumnsType<T, K>[];
   border?: boolean;
 }
 
-const BaseTable = ({ dataSource, columns, rowKey, border }: BaseTableProps) => {
+const BaseTable = <T, K extends keyof T>({
+  dataSource,
+  columns,
+  rowKey,
+  border,
+}: BaseTableProps<T, K>) => {
   return (
     <Table>
       <TableHeader>
@@ -32,7 +37,7 @@ const BaseTable = ({ dataSource, columns, rowKey, border }: BaseTableProps) => {
           {columns.map(({ align, width, title }, index) => (
             <TableHead
               style={{
-                textAlign: align || "center",
+                textAlign: align || "left",
                 width,
               }}
               className={cn(border && "border", "p-1")}
@@ -49,14 +54,14 @@ const BaseTable = ({ dataSource, columns, rowKey, border }: BaseTableProps) => {
           return (
             <TableRow key={_rowKey}>
               {columns.map(({ render, dataIndex, align, width }, index) => {
-                const value = !!dataIndex ? item[dataIndex] : "";
+                const value = (!!dataIndex ? item[dataIndex] : "") as any;
                 return (
                   <TableCell
                     key={`${_rowKey}-${index}`}
-                    style={{ textAlign: align || "center", width }}
+                    style={{ textAlign: align || "left", width }}
                     className={cn(border && "border", "p-1")}
                   >
-                    {typeof render === "function" ? render(value, item) : value}
+                    {render?.(value, item) ?? value}
                   </TableCell>
                 );
               })}

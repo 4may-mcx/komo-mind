@@ -48,24 +48,22 @@ const columns: BaseTableColumnsType<UserManagementType>[] = [
     dataIndex: "phone",
     render: (phone) => <>{phone}</>,
   },
+  {
+    title: "操作",
+    align: "center",
+    render: () => (
+      <>
+        <Button variant="link">编辑</Button>
+        <Button variant="link">清空权限</Button>
+      </>
+    ),
+  },
 ];
 
 export const UserManagementTable = () => {
-  const _columns = [
-    ...columns,
-    {
-      title: "操作",
-      render: () => (
-        <>
-          <Button variant="ghost">编辑</Button>
-          <Button variant="ghost">清空权限</Button>
-        </>
-      ),
-    },
-  ];
   return (
     <BaseTable
-      columns={_columns}
+      columns={columns}
       dataSource={mockData}
       rowKey={(record) => record.userName}
     />
