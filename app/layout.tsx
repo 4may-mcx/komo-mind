@@ -3,7 +3,6 @@ import ModalProvider from "@/providers/modal-provider";
 import SupabaseProvider from "@/providers/supabase-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import UserProvider from "@/providers/user-provider";
-import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -26,7 +25,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className} suppressHydrationWarning>
+    <html
+      lang="en"
+      style={{
+        fontFamily:
+          "'PingFang SC', 'Microsoft YaHei', 'GeistSans', , 'GeistSans', sans-serif",
+      }}
+      suppressHydrationWarning
+    >
       <body>
         <SupabaseProvider>
           <ConvexClientProvider>

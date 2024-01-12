@@ -12,7 +12,7 @@ const MusicPageLayout = ({ children }: { children: React.ReactNode }) => {
           <div className="border-r-[1px] border-neutral-300">
             <MusicSideBar />
           </div>
-          <div>{children}</div>
+          <div className="w-full h-full">{children}</div>
         </div>
       </div>
     </div>

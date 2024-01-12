@@ -1,40 +1,17 @@
-"use client";
+import { getSongs } from "../../action";
+import { LibraryHeader } from "./_component/library-header";
+import { LibraryList } from "./_component/library-list";
+import { RecentContent } from "./_component/recent-content";
 
-import Typography from "@/components/typography";
-import { useAuthModal } from "@/hooks/use-auth-modal";
-import { useUser } from "@/hooks/use-user";
-import { ListMusic, PlusSquare } from "lucide-react";
-import { useUploadModal } from "../../_hooks/use-upload-modal";
-import { UploadModal } from "../../_components/upload-modal";
-
-const SongsPage = () => {
-  const { user } = useUser();
-  const authModal = useAuthModal();
-  const uploadModal = useUploadModal();
-
-  const handleAdd = () => {
-    if (!user) return authModal.onOpen();
-
-    return uploadModal.onOpen();
-  };
-
+const SongsPage = async () => {
+  const songs = await getSongs();
   return (
     <div className="h-full w-full max-h-full flex">
       <div className="h-full w-52 flex flex-col border-r-[1px] border-neutral-300">
-        <div className="w-full flex items-center justify-between p-2">
-          <div>
-            <ListMusic className="h-4 w-4 mr-2 inline-block" />
-            <Typography.Small>Your Library</Typography.Small>
-          </div>
-          <PlusSquare
-            onClick={handleAdd}
-            className="h-4 w-4 cursor-pointer hover:animate-bounce"
-          />
-        </div>
-        <div className="h-full w-full p-2 gap-y-2 flex-grow overflow-y-scroll scroll-m-1"></div>
+        <LibraryHeader />
+        <LibraryList songs={songs} />
       </div>
-      <div className="p-4">songs</div>
-      <UploadModal />
+      <RecentContent songs={songs} />
     </div>
   );
 };
