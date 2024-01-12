@@ -1,12 +1,20 @@
 "use client";
 
-import { useParams } from "next/navigation";
-const SongPlayer = () => {
-  const { id } = useParams();
+import useLoadSongUrl from "../../../_hooks/use-load-songUrl";
+import usePlayer from "../../../_hooks/use-player";
+import useSongById from "../../../_hooks/use-song-by-id";
+
+const SongPlayer = ({ params: { id } }: { params: { id: string } }) => {
+  const { isLoading, song } = useSongById(id);
+  const player = usePlayer();
+  const songUrl = useLoadSongUrl(song!);
+
+  if (!song || !songUrl || !id) return null;
+
   return (
     <div className="h-full w-full flex justify-center items-center">
-      {/* <audio src=".">11</audio> */}
       songID: {id}
+      {songUrl}
     </div>
   );
 };

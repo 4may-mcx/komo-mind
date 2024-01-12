@@ -9,7 +9,7 @@ import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import uniqid from "uniqid";
-import { useUploadModal } from "../_hooks/use-upload-modal";
+import useUploadModal from "../_hooks/use-upload-modal";
 import { useRouter } from "next/navigation";
 
 // todo:input form 换为 shadcn-ui

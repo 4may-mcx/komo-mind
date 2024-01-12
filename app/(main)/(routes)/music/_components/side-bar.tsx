@@ -18,12 +18,14 @@ const SideBarItem = ({
   return (
     <div
       className={cn(
-        "flex items-center space-x-2 cursor-pointer px-4 py-2 w-52 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-600 hover:translate-x-1 duration-300",
+        "w-full flex items-center space-x-2 cursor-pointer px-4 py-[0.4rem] rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-600 hover:translate-x-1 duration-300",
         isActive && "bg-neutral-100 dark:bg-neutral-600"
       )}
     >
       {icon}
-      <Typography.Small className="">{title}</Typography.Small>
+      <Typography.Small className="truncate leading-5">
+        {title}
+      </Typography.Small>
     </div>
   );
 };

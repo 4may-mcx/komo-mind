@@ -1,22 +1,18 @@
 "use client";
 
+import Typography from "@/components/typography";
 import { Song } from "@/data/stripe-types";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import Typography from "@/components/typography";
+import useLoadImage from "../../../_hooks/use-load-image";
 
-const useLoadImage = (song: Song) => {
-  const supabaseClient = useSupabaseClient();
-  if (!song) return null;
-
-  const { data } = supabaseClient.storage
-    .from("images")
-    .getPublicUrl(song.image_path);
-  return data.publicUrl;
-};
-
-export const MusicCardItem = ({ song }: { song: Song }) => {
+export const MusicCardItem = ({
+  song,
+  onClick,
+}: {
+  song: Song;
+  onClick: (id: string) => void;
+}) => {
   const imagePath = useLoadImage(song);
   const pathName = usePathname();
   const router = useRouter();
@@ -24,7 +20,8 @@ export const MusicCardItem = ({ song }: { song: Song }) => {
   return (
     <div className="flex flex-col m-3">
       <div
-        onClick={() => router.push(`${pathName}/${song.id}`)}
+        onClick={() => onClick(song.id)}
+        // onClick={() => router.push(`${pathName}/${song.id}`)}
         className="h-36 w-32 flex items-center justify-center border-[1px] border-neutral-300 rounded-lg cursor-pointer overflow-hidden"
       >
         <Image

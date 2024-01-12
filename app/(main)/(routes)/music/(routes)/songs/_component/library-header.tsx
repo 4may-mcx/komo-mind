@@ -4,7 +4,7 @@ import Typography from "@/components/typography";
 import { useAuthModal } from "@/hooks/use-auth-modal";
 import { useUser } from "@/hooks/use-user";
 import { ListMusic, PlusSquare } from "lucide-react";
-import { useUploadModal } from "../../../_hooks/use-upload-modal";
+import useUploadModal from "../../../_hooks/use-upload-modal";
 import { UploadModal } from "../../../_components/upload-modal";
 
 export const LibraryHeader = () => {
