@@ -10,7 +10,6 @@ import {
   Music2Icon,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { MAX_RESIZE_WIDTH, MIN_RESIZE_WIDTH } from "./constant";
 import { SidebarContainer } from "./sidebar-container";
 
 const list = [

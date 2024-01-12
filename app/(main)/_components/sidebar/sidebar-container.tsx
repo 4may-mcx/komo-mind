@@ -14,7 +14,7 @@ export const SidebarContainer: FC<{
 }> = ({ children }) => {
   const isResizingRef = useRef(false);
   const resizeStateRef = useRef({
-    width: MAX_WIDTH,
+    width: MIN_WIDTH,
     increasing: false,
     decreasing: true,
   });
@@ -44,6 +44,7 @@ export const SidebarContainer: FC<{
     if (newWidth > MAX_WIDTH) newWidth = MAX_WIDTH;
 
     if (newWidth < MAX_RESIZE_WIDTH && newWidth > MIN_RESIZE_WIDTH) {
+      handleResizingPeriod();
       isResizingRef.current = false;
       if (decreasing) {
         newWidth = MIN_WIDTH;
@@ -51,9 +52,7 @@ export const SidebarContainer: FC<{
       if (increasing) {
         newWidth = MAX_WIDTH;
       }
-      handleResizingPeriod();
     }
-
     return newWidth;
   };
 
@@ -64,7 +63,8 @@ export const SidebarContainer: FC<{
     updateResizeState(newWidth);
 
     if (sidebarRef.current) {
-      sidebarRef.current.style.width = `${adjustWidth(newWidth)}px`;
+      const _width = adjustWidth(newWidth);
+      sidebarRef.current.style.width = _width + "px";
     }
   };
 
@@ -100,11 +100,11 @@ export const SidebarContainer: FC<{
     <aside
       ref={sidebarRef}
       style={{
-        width: MAX_WIDTH + "px",
+        width: MIN_WIDTH + "px",
       }}
       className={cn(
         "h-full overflow-y-auto relative flex flex-col",
-        isResetting && "transition-all ease-in-out duration-200"
+        isResetting && "transition-all ease-in-out duration-300"
       )}
     >
       <nav>{children(sidebarRef.current?.style.width)}</nav>
