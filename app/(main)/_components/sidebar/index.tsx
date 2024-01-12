@@ -54,20 +54,26 @@ export const Sidebar = () => {
             <div className="w-full translate-x-[-0.2rem]">
               <ModeToggle />
             </div>
-            {list.map((item) => (
-              <div
-                onClick={() => router.push(item.path)}
-                className={cn(
-                  "w-full flex items-center rounded-md p-[0.35rem] cursor-pointer hover:bg-neutral-200 hover:dark:bg-neutral-600 transition-all duration-200",
-                  pathname === item.path && "bg-neutral-200 dark:bg-neutral-600"
-                )}
-                key={item.name}
-              >
-                <span className="mr-3">{item.icon}</span>
-                {/* {!isClosed && <Typography.Small>{item.name}</Typography.Small>} */}
-                <Typography.Small>{item.name}</Typography.Small>
-              </div>
-            ))}
+            {list.map((item) => {
+              const active =
+                item.path === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(item.path);
+              return (
+                <div
+                  onClick={() => router.push(item.path)}
+                  className={cn(
+                    "w-full flex items-center rounded-md p-[0.35rem] cursor-pointer hover:bg-neutral-200 hover:dark:bg-neutral-600 transition-all duration-200",
+                    active && "bg-neutral-200 dark:bg-neutral-600"
+                  )}
+                  key={item.name}
+                >
+                  <span className="mr-3">{item.icon}</span>
+                  {/* {!isClosed && <Typography.Small>{item.name}</Typography.Small>} */}
+                  <Typography.Small>{item.name}</Typography.Small>
+                </div>
+              );
+            })}
           </div>
         );
       }}

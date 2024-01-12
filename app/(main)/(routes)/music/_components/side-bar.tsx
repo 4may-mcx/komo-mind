@@ -44,7 +44,7 @@ export const MusicSideBar = () => {
               onClick={() => router.push(path)}
             >
               <SideBarItem
-                isActive={pathname === path}
+                isActive={pathname.startsWith(path)}
                 icon={icon}
                 title={title}
               />
