@@ -4,7 +4,6 @@ import { Spinner } from "@/components/spinner";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { SignInButton } from "@clerk/clerk-react";
 
 export const Heading = () => {
   // const { isAuthenticated, isLoading } = useConvexAuth();
@@ -30,12 +29,7 @@ export const Heading = () => {
             </Link>
           </Button>
         ) : (
-          <SignInButton mode="modal">
-            <Button>
-              Get your mind
-              <ArrowRight className="h-4 w-4 ml-2" />
-            </Button>
-          </SignInButton>
+          <></>
         )}
       </div>
     </div>
