@@ -7,7 +7,7 @@ import useSongById from "../../../_hooks/use-song-by-id";
 const SongPlayer = ({ params: { id } }: { params: { id: string } }) => {
   const { isLoading, song } = useSongById(id);
   const player = usePlayer();
-  const songUrl = useLoadSongUrl(song!);
+  const songUrl = useLoadSongUrl(song);
 
   if (!song || !songUrl || !id) return null;
 

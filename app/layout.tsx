@@ -1,7 +1,11 @@
 import { ThemeProvider } from "@/providers/theme-provider";
 import type { Metadata } from "next";
+import { Open_Sans } from "next/font/google";
 import { Toaster } from "sonner";
+import "@fontsource/noto-sans-sc";
 import "./globals.css";
+
+const font = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "komo-mind",
@@ -21,15 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      style={{
-        fontFamily:
-          "'PingFang SC', 'Microsoft YaHei', 'GeistSans', , 'GeistSans', sans-serif",
-      }}
-      suppressHydrationWarning
-    >
-      <body>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={font.className}
+        style={{ fontFamily: "'Noto Sans SC', sans-serif" }}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
