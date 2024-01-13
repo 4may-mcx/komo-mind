@@ -72,12 +72,15 @@ const PlayerContent = ({ song, songUrl }: { song: Song; songUrl: string }) => {
   };
 
   const handlePlay = () =>
-    isPlaying ? setIsPlaying(false) : setIsPlaying(false);
+    isPlaying ? setIsPlaying(false) : setIsPlaying(true);
 
   const toggleMute = () => (volume > 0 ? setVolume(0) : setVolume(100));
 
   return (
     <div className="w-full h-full flex justify-center items-center">
+      <div className="mx-10 flex flex-grow">
+        <audio controls src={songUrl} className="scale-90" />
+      </div>
       <div className="gap-x-6 flex justify-center items-center">
         <PlayerControlItem onClick={onPlayPrevious} Icon={ArrowLeftToLine} />
         <PlayerControlItem
@@ -86,7 +89,7 @@ const PlayerContent = ({ song, songUrl }: { song: Song; songUrl: string }) => {
         />
         <PlayerControlItem onClick={onPlayNext} Icon={ArrowRightToLine} />
       </div>
-      <div className="flex h-full ml-10 gap-x-2">
+      <div className="flex h-full mx-10 gap-x-2">
         <PlayerControlItem
           className="h-5 w-5"
           onClick={toggleMute}
