@@ -1,7 +1,6 @@
-import { Song } from "@/data/stripe-types";
 import usePlayer from "./use-player";
 
-const useOnPlay = (songs: Song[]) => {
+const useOnPlay = (songs: any[]) => {
   const player = usePlayer();
   return () => {};
   // const authModal = useAuthModal();

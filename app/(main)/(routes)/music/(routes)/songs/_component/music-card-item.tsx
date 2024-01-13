@@ -1,7 +1,6 @@
 "use client";
 
 import Typography from "@/components/typography";
-import { Song } from "@/data/stripe-types";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import useLoadImage from "../../../_hooks/use-load-image";
@@ -10,7 +9,7 @@ export const MusicCardItem = ({
   song,
   onClick,
 }: {
-  song: Song;
+  song: any;
   onClick: (id: string) => void;
 }) => {
   const imagePath = useLoadImage(song);

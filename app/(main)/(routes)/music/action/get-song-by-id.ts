@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
-import { Song } from "@/data/stripe-types";
 
-export const getSongById = async (id: string): Promise<Song> => {
+export const getSongById = async (id: string): Promise<any> => {
   return await Promise.resolve({ songUrl: "11" } as any);
   // const supabase = createServerComponentClient({
   //   cookies: cookies,

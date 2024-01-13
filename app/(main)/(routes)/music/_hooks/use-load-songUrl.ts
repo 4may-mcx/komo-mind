@@ -1,6 +1,4 @@
-import { Song } from "@/data/stripe-types";
-
-const useLoadSongUrl = (song: Song) => {
+const useLoadSongUrl = (song: any) => {
   return "";
   // const supabaseClient = useSupabaseClient();
 

@@ -1,6 +1,4 @@
-import { Song } from "@/data/stripe-types";
-
-const useLoadImage = (song: Song) => {
+const useLoadImage = (song: any) => {
   // const supabaseClient = useSupabaseClient();
   // if (!song) return null;
 

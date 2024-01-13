@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import { Song } from "@/data/stripe-types";
 import { toast } from "sonner";
 
 const useSongById = (id?: string) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [song, setSong] = useState<Song | undefined>(undefined);
+  const [song, setSong] = useState<any | undefined>(undefined);
   return { isLoading: false, song: {} as any };
   // useEffect(() => {
   //   if (!id) {

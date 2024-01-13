@@ -1,8 +1,6 @@
 import { cookies } from "next/headers";
 
-import { Song } from "@/data/stripe-types";
-
-export const getSongs = async (): Promise<Song[]> => {
+export const getSongs = async (): Promise<any[]> => {
   return [];
   // const supabase = createServerComponentClient({
   //   cookies: cookies,

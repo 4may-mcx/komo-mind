@@ -1,7 +1,6 @@
 "use client";
 
 import { Slider } from "@/components/ui/slider";
-import { Song } from "@/data/stripe-types";
 import { cn } from "@/lib/utils";
 import {
   ArrowLeftToLine,
@@ -50,7 +49,7 @@ const getVolumeIcon = (volume: number) => {
   return Volume;
 };
 
-const PlayerContent = ({ song, songUrl }: { song: Song; songUrl: string }) => {
+const PlayerContent = ({ song, songUrl }: { song: any; songUrl: string }) => {
   const player = usePlayer();
   const [volume, setVolume] = useState(100);
   const [isPlaying, setIsPlaying] = useState(false);
