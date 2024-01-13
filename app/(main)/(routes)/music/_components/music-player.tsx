@@ -1,6 +1,8 @@
 "use client";
 
+import { Slider } from "@/components/ui/slider";
 import { Song } from "@/data/stripe-types";
+import { cn } from "@/lib/utils";
 import {
   ArrowLeftToLine,
   ArrowRightToLine,
@@ -12,12 +14,10 @@ import {
   Volume2,
   VolumeX,
 } from "lucide-react";
+import { useState } from "react";
 import useLoadSongUrl from "../_hooks/use-load-songUrl";
 import usePlayer from "../_hooks/use-player";
 import useSongById from "../_hooks/use-song-by-id";
-import { cn } from "@/lib/utils";
-import { Slider } from "@/components/ui/slider";
-import { useState } from "react";
 
 const PlayerControlItem = ({
   onClick,
@@ -51,24 +51,46 @@ const getVolumeIcon = (volume: number) => {
 };
 
 const PlayerContent = ({ song, songUrl }: { song: Song; songUrl: string }) => {
-  const [volume, setVolume] = useState<number>(0);
-  const Icon = false ? Pause : Play;
-  const VolumeIcon = getVolumeIcon(volume);
+  const player = usePlayer();
+  const [volume, setVolume] = useState(100);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const currentSongIndex = player.ids.findIndex((id) => id === player.activeId);
+
+  const onPlayNext = () => {
+    if (player.ids.length === 0) return;
+    const nextSong = player.ids[currentSongIndex + 1];
+
+    player.setId(nextSong || player.ids[0]);
+  };
+
+  const onPlayPrevious = () => {
+    if (player.ids.length === 0) return;
+    const prevSong = player.ids[currentSongIndex - 1];
+
+    player.setId(prevSong || player.ids[player.ids.length - 1]);
+  };
+
+  const handlePlay = () =>
+    isPlaying ? setIsPlaying(false) : setIsPlaying(false);
+
+  const toggleMute = () => (volume > 0 ? setVolume(0) : setVolume(100));
 
   return (
     <div className="w-full h-full flex justify-center items-center">
       <div className="gap-x-6 flex justify-center items-center">
-        <PlayerControlItem onClick={() => {}} Icon={ArrowLeftToLine} />
-        <PlayerControlItem onClick={() => {}} Icon={Icon} />
-        <PlayerControlItem onClick={() => {}} Icon={ArrowRightToLine} />
+        <PlayerControlItem onClick={onPlayPrevious} Icon={ArrowLeftToLine} />
+        <PlayerControlItem
+          onClick={handlePlay}
+          Icon={isPlaying ? Pause : Play}
+        />
+        <PlayerControlItem onClick={onPlayNext} Icon={ArrowRightToLine} />
       </div>
       <div className="flex h-full ml-10 gap-x-2">
         <PlayerControlItem
           className="h-5 w-5"
-          onClick={() => {
-            volume > 0 ? setVolume(0) : setVolume(100);
-          }}
-          Icon={VolumeIcon}
+          onClick={toggleMute}
+          Icon={getVolumeIcon(volume)}
         />
         <Slider
           className="w-20"
