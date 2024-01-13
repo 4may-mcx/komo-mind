@@ -1,6 +1,5 @@
 "use client";
 
-import { Doc, Id } from "@/convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
 import { FileIcon } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
@@ -8,9 +7,9 @@ import { useState } from "react";
 import { Item } from "./item";
 
 interface DocumentListProps {
-  parentDocumentId?: Id<"documents">;
+  parentDocumentId?: number;
   level?: number;
-  data?: Doc<"documents">[];
+  data?: any[];
 }
 
 export const DocumentList = ({

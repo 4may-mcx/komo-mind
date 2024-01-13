@@ -1,9 +1,17 @@
 "use client";
 
+import { ModeToggle } from "@/components/mode-toggle";
+import { Spinner } from "@/components/spinner";
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
-import { ModeToggle } from "../../../components/mode-toggle";
+import { UserButton, useUser } from "@clerk/nextjs";
 import { Logo } from "./logo";
+
+const ClerkLogin = () => {
+  const { user, isLoaded } = useUser();
+
+  return !isLoaded ? <Spinner /> : !!user && <UserButton afterSignOutUrl="/" />;
+};
 
 export const NavBar = () => {
   const scrolled = useScrollTop();
@@ -19,6 +27,7 @@ export const NavBar = () => {
 
       <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
         <ModeToggle />
+        <ClerkLogin />
       </div>
     </div>
   );
