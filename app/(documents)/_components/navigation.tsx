@@ -5,10 +5,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { api } from "@/convex/_generated/api";
 import { useSearch } from "@/hooks/use-search";
 import { cn } from "@/lib/utils";
-import { useMutation } from "convex/react";
 import {
   ChevronsLeft,
   MenuIcon,
@@ -20,7 +18,6 @@ import {
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { ElementRef, useEffect, useRef, useState } from "react";
-import { toast } from "sonner";
 import { useMediaQuery } from "usehooks-ts";
 import { DocumentList } from "./document-list";
 import { Item } from "./item";
@@ -31,7 +28,6 @@ export const Navigation = () => {
   const search = useSearch();
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const create = useMutation(api.documents.create);
 
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -103,15 +99,16 @@ export const Navigation = () => {
     }
   };
 
-  const handleCreate = () => {
-    const promise = create({ title: "untitled" });
+  // const handleCreate = () => {
+  //   const promise = create({ title: "untitled" });
 
-    toast.promise(promise, {
-      loading: "Creating a new note...",
-      success: "New note created!",
-      error: "oi! Failed to create a new note",
-    });
-  };
+  //   toast.promise(promise, {
+  //     loading: "Creating a new note...",
+  //     success: "New note created!",
+  //     error: "oi! Failed to create a new note",
+  //   });
+  // };
+  const handleCreate = () => {};
 
   return (
     <>

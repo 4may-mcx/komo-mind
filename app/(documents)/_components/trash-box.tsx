@@ -1,70 +1,65 @@
 "use client";
 
-import { Spinner } from "@/components/spinner";
 import { Input } from "@/components/ui/input";
-import { api } from "@/convex/_generated/api";
-import { Id } from "@/convex/_generated/dataModel";
-import { useMutation, useQuery } from "convex/react";
 import { Search, Trash, Undo } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import { InputHTMLAttributes, useState } from "react";
-import { toast } from "sonner";
+import { useState } from "react";
 import { ConfirmModal } from "../../../components/modals/confirm-modal";
 
 export const TrashBox = () => {
   const router = useRouter();
   const params = useParams();
-  const documents = useQuery(api.documents.getTrash);
-  const restore = useMutation(api.documents.restore);
-  const remove = useMutation(api.documents.remove);
 
   const [search, setSearch] = useState("");
 
-  if (documents === undefined) {
-    return (
-      <div className="h-full flex items-center justify-center p-4">
-        <Spinner size="lg" />
-      </div>
-    );
-  }
+  // if (documents === undefined) {
+  //   return (
+  //     <div className="h-full flex items-center justify-center p-4">
+  //       <Spinner size="lg" />
+  //     </div>
+  //   );
+  // }
 
-  const filterDocuments = documents?.filter((document) => {
-    return document.title
-      .toLocaleLowerCase()
-      .includes(search.toLocaleLowerCase());
-  });
+  const filterDocuments = [] as any;
+  // const filterDocuments = documents?.filter((document) => {
+  //   return document.title
+  //     .toLocaleLowerCase()
+  //     .includes(search.toLocaleLowerCase());
+  // });
 
   const onClick = (documentId: string) => {
     router.push(`/documents/${documentId}`);
   };
 
-  const onRestore = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    documentId: Id<"documents">
-  ) => {
-    e.stopPropagation();
-    const promise = restore({ id: documentId });
+  const onRestore = (a: any, b: any) => {};
+  // const onRestore = (
+  //   e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  //   documentId: Id<"documents">
+  // ) => {
+  //   e.stopPropagation();
+  //   const promise = restore({ id: documentId });
 
-    toast.promise(promise, {
-      loading: "Restoring note...",
-      success: "Note restored!",
-      error: "Failed to restore note",
-    });
-  };
+  //   toast.promise(promise, {
+  //     loading: "Restoring note...",
+  //     success: "Note restored!",
+  //     error: "Failed to restore note",
+  //   });
+  // };
 
-  const onRemove = (documentId: Id<"documents">) => {
-    const promise = remove({ id: documentId });
+  const onRemove = (a: any) => {};
+  // const onRemove = (documentId: Id<"documents">) => {
+  //   const promise = remove({ id: documentId });
 
-    toast.promise(promise, {
-      loading: "Deleting note...",
-      success: "Note deleted!",
-      error: "Failed to delete note",
-    });
+  //   toast.promise(promise, {
+  //     loading: "Deleting note...",
+  //     success: "Note deleted!",
+  //     error: "Failed to delete note",
+  //   });
 
-    if (params.documentId === documentId) {
-      router.push("/documents");
-    }
-  };
+  //   if (params.documentId === documentId) {
+  //     router.push("/documents");
+  //   }
+  // };
   return (
     <div className="text-sm">
       <div className="flex items-center gap-x-1 p-2">
@@ -81,7 +76,7 @@ export const TrashBox = () => {
         <p className="hidden last:block text-xs text-center text-muted-foreground pb-2">
           No documents found.
         </p>
-        {filterDocuments?.map((document) => (
+        {filterDocuments?.map((document: any) => (
           <div
             key={document._id}
             role="button"

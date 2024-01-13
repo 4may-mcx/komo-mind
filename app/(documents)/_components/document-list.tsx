@@ -1,9 +1,7 @@
 "use client";
 
-import { api } from "@/convex/_generated/api";
 import { Doc, Id } from "@/convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
-import { useQuery } from "convex/react";
 import { FileIcon } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
@@ -30,9 +28,10 @@ export const DocumentList = ({
     }));
   };
 
-  const documents = useQuery(api.documents.getSidebar, {
-    parentDocument: parentDocumentId,
-  });
+  // const documents = useQuery(api.documents.getSidebar, {
+  //   parentDocument: parentDocumentId,
+  // });
+  const documents = [] as any;
 
   const onRedirect = (documentId: string) => {
     router.push(`/documents/${documentId}`);
@@ -65,7 +64,7 @@ export const DocumentList = ({
           No pages inside
         </p>
       )}
-      {documents.map((document) => {
+      {documents.map((document: any) => {
         const { _id, icon, title } = document;
         return (
           <div key={_id}>

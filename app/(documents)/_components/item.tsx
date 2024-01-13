@@ -8,11 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Skeleton } from "@/components/ui/skeleton";
-import { api } from "@/convex/_generated/api";
-import { Id } from "@/convex/_generated/dataModel";
 import { cn } from "@/lib/utils";
-import { useUser } from "@clerk/clerk-react";
-import { useMutation } from "convex/react";
 import {
   ChevronDown,
   ChevronRight,
@@ -22,10 +18,9 @@ import {
   Trash,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 
 interface ItemProps {
-  id?: Id<"documents">;
+  id?: number;
   documentIcon?: string;
   active?: boolean;
   expanded?: boolean;
@@ -49,10 +44,7 @@ export const Item = ({
   onClick,
   icon: Icon,
 }: ItemProps) => {
-  const { user } = useUser();
   const router = useRouter();
-  const create = useMutation(api.documents.create);
-  const archive = useMutation(api.documents.archive);
 
   const ChevronIcon = expanded ? ChevronDown : ChevronRight;
   const isNormalItem = !!id;
@@ -62,37 +54,40 @@ export const Item = ({
     onExpand?.();
   };
 
-  const onCreate = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.stopPropagation();
-    if (!isNormalItem) return;
+  // const onCreate = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  //   e.stopPropagation();
+  //   if (!isNormalItem) return;
 
-    const promise = create({ title: "Untitled2", parentDocument: id }).then(
-      (documentId) => {
-        if (!expanded) {
-          onExpand?.();
-        }
-        router.push(`/documents/${documentId}`);
-      }
-    );
+  //   const promise = create({ title: "Untitled2", parentDocument: id }).then(
+  //     (documentId) => {
+  //       if (!expanded) {
+  //         onExpand?.();
+  //       }
+  //       router.push(`/documents/${documentId}`);
+  //     }
+  //   );
 
-    toast.promise(promise, {
-      loading: "Oi! Creating a new note...",
-      success: "New note created!",
-      error: "Failed to create a new note",
-    });
-  };
+  //   toast.promise(promise, {
+  //     loading: "Oi! Creating a new note...",
+  //     success: "New note created!",
+  //     error: "Failed to create a new note",
+  //   });
+  // };
 
-  const onArchive = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.stopPropagation();
-    if (!isNormalItem) return;
-    const promise = archive({ id });
+  // const onArchive = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  //   e.stopPropagation();
+  //   if (!isNormalItem) return;
+  //   const promise = archive({ id });
 
-    toast.promise(promise, {
-      loading: "Moving to trash...",
-      success: "Note moved to trash!",
-      error: "Failed to archive note.",
-    });
-  };
+  //   toast.promise(promise, {
+  //     loading: "Moving to trash...",
+  //     success: "Note moved to trash!",
+  //     error: "Failed to archive note.",
+  //   });
+  // };
+
+  const onCreate = () => {};
+  const onArchive = () => {};
 
   return (
     <div
@@ -153,7 +148,7 @@ export const Item = ({
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <div className="text-xs text-muted-foreground">
-                Last edited by: {user?.fullName}
+                Last edited by: todo
               </div>
             </DropdownMenuContent>
           </DropdownMenu>

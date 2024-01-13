@@ -1,8 +1,4 @@
-import { ConvexClientProvider } from "@/providers/convex-provider";
-import ModalProvider from "@/providers/modal-provider";
-import SupabaseProvider from "@/providers/supabase-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
-import UserProvider from "@/providers/user-provider";
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -34,23 +30,16 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        <SupabaseProvider>
-          <ConvexClientProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-              storageKey="komo-theme-2"
-            >
-              <UserProvider>
-                <ModalProvider />
-                <Toaster position="bottom-center" />
-                {children}
-              </UserProvider>
-            </ThemeProvider>
-          </ConvexClientProvider>
-        </SupabaseProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          storageKey="komo-theme-2"
+        >
+          <Toaster position="bottom-center" />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

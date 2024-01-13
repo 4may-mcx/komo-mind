@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/clerk-react": "^4.30.2",
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -22,11 +21,6 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.0.7",
-    "@supabase/auth-helpers-nextjs": "^0.8.7",
-    "@supabase/auth-helpers-react": "^0.4.2",
-    "@supabase/auth-ui-react": "^0.4.7",
-    "@supabase/auth-ui-shared": "^0.1.8",
-    "@supabase/ssr": "^0.0.10",
     "@tanstack/react-table": "^8.11.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -59,7 +53,6 @@
     "eslint": "^8",
     "eslint-config-next": "^14",
     "postcss": "^8",
-    "supabase": "^1.10",
     "tailwindcss": "^3.3.0",
     "typescript": "^5.3.3"
   }

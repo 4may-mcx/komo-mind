@@ -1,15 +1,15 @@
 import { Song } from "@/data/stripe-types";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 const useLoadImage = (song: Song) => {
-  const supabaseClient = useSupabaseClient();
-  if (!song) return null;
+  // const supabaseClient = useSupabaseClient();
+  // if (!song) return null;
 
-  const { data } = supabaseClient.storage
-    .from("images")
-    .getPublicUrl(song.image_path);
+  // const { data } = supabaseClient.storage
+  //   .from("images")
+  //   .getPublicUrl(song.image_path);
 
-  return data.publicUrl;
+  // return data.publicUrl;
+  return "";
 };
 
 export default useLoadImage;

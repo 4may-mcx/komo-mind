@@ -2,13 +2,14 @@
 
 import { Spinner } from "@/components/spinner";
 import { Button } from "@/components/ui/button";
-import { useConvexAuth } from "convex/react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { SignInButton } from "@clerk/clerk-react";
 
 export const Heading = () => {
-  const { isAuthenticated, isLoading } = useConvexAuth();
+  // const { isAuthenticated, isLoading } = useConvexAuth();
+  const isAuthenticated = true;
+  const isLoading = false;
   return (
     <div className="max-w-3xl space-y-4 mt-32">
       <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold">
