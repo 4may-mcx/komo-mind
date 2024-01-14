@@ -10,6 +10,7 @@ import {
 } from "@components/ui/alert-dialog";
 import { X } from "lucide-react";
 import { ReactNode } from "react";
+import { Button } from "../ui/button";
 
 interface CommonModalProps {
   title: string;
@@ -50,7 +51,9 @@ const CommonModal = ({
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         {children}
-        <AlertDialogFooter>{footer}</AlertDialogFooter>
+        <AlertDialogFooter className="w-full">
+          {footer ? footer : onOk && <Button onClick={onOk}>确认</Button>}
+        </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   );
