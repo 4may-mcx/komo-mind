@@ -27,7 +27,7 @@ const formSchema = z.object({
   }),
 });
 
-export const InitialModal = () => {
+export const CreateServerModal = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -43,11 +43,11 @@ export const InitialModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.post("api/servers", values);
+      await axios.post("/api/servers", values);
 
       form.reset();
       router.refresh();
-      // window.location.reload();
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }

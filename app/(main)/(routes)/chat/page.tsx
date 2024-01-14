@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 import { initialProfile } from "@/lib/initial-profile";
 import { redirect } from "next/navigation";
-import { InitialModal } from "./_components/initial-modal";
+import { CreateServerModal } from "./_components/initial-modal";
 
 const ChatPage = async () => {
   const profile = await initialProfile();
@@ -19,7 +19,7 @@ const ChatPage = async () => {
 
   if (server) return redirect(`chat/${server.id}`);
 
-  return <InitialModal />;
+  return <CreateServerModal />;
 };
 
 export default ChatPage;
