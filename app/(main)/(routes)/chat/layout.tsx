@@ -1,5 +1,6 @@
 import { getChatServers } from "@/app/api/servers/get-chat-servers";
 import { ReactNode } from "react";
+import { InvitePeopleButton } from "./_components/invite-people";
 import { ServerSelect } from "./_components/server-select";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
@@ -12,6 +13,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
       <div className="h-full w-44 border-r-[1px] border-neutral-300">
         <div className="p-1 flex w-44 items-center justify-center border-b-[1px] border-neutral-300">
           <ServerSelect servers={servers} defaultValue={firstServerId} />
+          <InvitePeopleButton />
         </div>
       </div>
       <div className="h-full w-full flex justify-center items-center">
