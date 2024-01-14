@@ -1,23 +1,13 @@
-import { db } from "@/lib/db";
-import { initialProfile } from "@/lib/initial-profile";
+import { getChatServers } from "@/app/api/servers/get-chat-servers";
 import { redirect } from "next/navigation";
-import { CreateServerModal } from "./_components/initial-modal";
+import { CreateServerModal } from "./_components/create-server-modal";
 
 const ChatPage = async () => {
-  const profile = await initialProfile();
+  const servers = await getChatServers();
 
-  // 默认进入第一个server，找不到就创建
-  const server = await db.server.findFirst({
-    where: {
-      members: {
-        some: {
-          profileId: profile.id,
-        },
-      },
-    },
-  });
+  const firstServerId = servers?.[0].id;
 
-  if (server) return redirect(`chat/${server.id}`);
+  if (firstServerId) return redirect(`chat/${firstServerId}`);
 
   return <CreateServerModal />;
 };
