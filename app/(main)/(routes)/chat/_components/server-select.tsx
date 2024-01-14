@@ -1,6 +1,5 @@
 "use client";
 
-import { Server } from "@prisma/client";
 import {
   Select,
   SelectContent,
@@ -10,14 +9,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Server } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
 export const ServerSelect = ({
   servers,
-  value,
+  defaultValue,
 }: {
   servers: Server[];
-  value: string;
+  defaultValue: string;
 }) => {
   const router = useRouter();
   const handleValueChange = (id: string) => {
@@ -25,9 +25,9 @@ export const ServerSelect = ({
   };
 
   return (
-    <Select defaultValue={value} onValueChange={handleValueChange}>
-      <SelectTrigger className="w-full h-7 border-0 ring-0">
-        <SelectValue className="ring-0" placeholder="Select a server" />
+    <Select defaultValue={defaultValue} onValueChange={handleValueChange}>
+      <SelectTrigger className="w-full h-7 border-0">
+        <SelectValue />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
