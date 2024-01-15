@@ -1,19 +1,16 @@
 "use client";
 
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import Typography from "@/components/typography";
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 import { Server } from "@prisma/client";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Typography from "@/components/typography";
 
 export const ServerSelect = ({
   servers,
@@ -29,7 +26,7 @@ export const ServerSelect = ({
 
   return (
     <Select defaultValue={defaultValue} onValueChange={handleValueChange}>
-      <SelectTrigger className="w-full h-6 border-0">
+      <SelectTrigger className="w-full h-7 border-[1px] border-neutral-300">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
@@ -40,10 +37,12 @@ export const ServerSelect = ({
               key={server.id}
               className="line-clamp-1"
             >
-              <div className="flex items-center gap-x-2">
-                <Avatar className="h-6 w-6">
+              <div className="h-full flex items-center gap-x-2">
+                {/* <Avatar className="h-6 w-6">
                   <AvatarImage src={server.imageUrl} />
-                </Avatar>
+                  <AvatarFallback>#</AvatarFallback>
+                </Avatar> */}
+                <span>{"#"}</span>
                 <Typography.Small className="line-clamp-1">
                   {server.name}
                 </Typography.Small>

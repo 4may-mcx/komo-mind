@@ -1,7 +1,6 @@
 import { getChatServers } from "@/app/api/servers/get-chat-servers";
 import { ReactNode } from "react";
-import { InvitePeopleButton } from "./_components/invite-people";
-import { ServerSelect } from "./_components/server-select";
+import { LayoutHeader } from "./_components/layout-header";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const servers = await getChatServers();
@@ -9,15 +8,15 @@ const Layout = async ({ children }: { children: ReactNode }) => {
   const firstServerId = servers[0].id;
 
   return (
-    <div className="h-[90%] w-[90%] flex rounded-lg border-[1px] border-neutral-300 shadow-lg">
-      <div className="h-full w-44 border-r-[1px] border-neutral-300">
-        <div className="p-1 flex w-44 items-center justify-center border-b-[1px] border-neutral-300">
-          <ServerSelect servers={servers} defaultValue={firstServerId} />
-          <InvitePeopleButton />
-        </div>
+    <div className="h-[90%] w-[90%] flex flex-col rounded-lg border-[1px] border-neutral-300 shadow-lg">
+      <div className="w-full border-b-[1px] border-neutral-300">
+        <LayoutHeader servers={servers} defaultValue={firstServerId} />
       </div>
-      <div className="h-full w-full flex justify-center items-center">
-        {children}
+      <div className="flex flex-grow">
+        <div className="h-full w-52 border-r-[1px] border-neutral-300"></div>
+        <div className="h-full w-full flex justify-center items-center">
+          {children}
+        </div>
       </div>
     </div>
   );
