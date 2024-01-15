@@ -42,7 +42,9 @@ const InvitePage = async ({
     },
   });
 
-  return redirect(`/chat/${server.id}`);
+  if (server) return redirect(`/chat/${server.id}`);
+
+  return null;
 };
 
 export default InvitePage;

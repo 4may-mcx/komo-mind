@@ -6,6 +6,7 @@ const TodoPage = () => {
       <p>修复侧边栏边缘动画</p>
       <p>开放首页，login弹窗登录</p>
       <p>invite跳转会跳两下</p>
+      <p>invite之后自动弹出一个Modal表示欢迎</p>
     </div>
   );
 };
