@@ -7,18 +7,10 @@ import {
   Disc2,
   ListTodo,
   ListMusic,
+  LucideIcon,
 } from "lucide-react";
-import { ComponentType, FC } from "react";
 
-interface IconProps {
-  className?: string;
-}
-
-interface IconWrapperProps {
-  Icon: ComponentType<IconProps>;
-}
-
-const IconWrapper: FC<IconWrapperProps> = ({ Icon }) => {
+const IconWrapper = ({ Icon }: { Icon: LucideIcon }) => {
   return <Icon className="w-4 h-4" />;
 };
 
@@ -52,16 +44,6 @@ export const SideBarList = [
         path: "/music/songs",
       },
       {
-        title: "Artists",
-        icon: <IconWrapper Icon={Mic2} />,
-        path: "/music/artists",
-      },
-      {
-        title: "Albums",
-        icon: <IconWrapper Icon={Disc2} />,
-        path: "/music/albums",
-      },
-      {
         title: "Todo",
         icon: <IconWrapper Icon={ListTodo} />,
         path: "/music/todo",
@@ -85,16 +67,6 @@ export const SideBarList = [
         title: "Top Songs",
         icon: <IconWrapper Icon={ListMusic} />,
         path: "/music/top-songs",
-      },
-      {
-        title: "Top Artists",
-        icon: <IconWrapper Icon={ListMusic} />,
-        path: "/music/top-artists",
-      },
-      {
-        title: "Top Albums",
-        icon: <IconWrapper Icon={ListMusic} />,
-        path: "/music/top-albums",
       },
     ],
   },

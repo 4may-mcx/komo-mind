@@ -1,5 +1,5 @@
 const MusicPage = () => {
-  return <div>MMMMMCCCC</div>;
+  return <div>Music</div>;
 };
 
 export default MusicPage;
