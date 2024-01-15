@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Server } from "@prisma/client";
-import { Boxes, LucideIcon, Settings, Settings2, UserPlus } from "lucide-react";
+import { Boxes, LucideIcon, Settings, UserPlus } from "lucide-react";
 import { ReactNode } from "react";
 import { ServerSelect } from "./server-select";
 
@@ -39,7 +39,7 @@ export const LayoutHeader = ({
         <ServerSelect servers={servers} defaultValue={defaultValue} />
       </div>
       <BaseButton icon={Boxes}>add</BaseButton>
-      <BaseButton icon={Settings2}>edit</BaseButton>
+      <BaseButton icon={Settings}>edit</BaseButton>
       <BaseButton icon={UserPlus}>invite</BaseButton>
     </div>
   );

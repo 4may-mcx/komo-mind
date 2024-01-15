@@ -1,4 +1,6 @@
-import BaseTable, { BaseTableColumnsType } from "@/components/base-table";
+"use client";
+import BaseTable from "@/components/base-table";
+import { BaseTableColumnsType } from "@/components/base-table/types";
 import { Button } from "@/components/ui/button";
 
 interface UserManagementType {
