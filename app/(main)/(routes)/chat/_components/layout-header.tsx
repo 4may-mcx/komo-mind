@@ -1,7 +1,16 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button";
 import { Server } from "@prisma/client";
-import { Boxes, LucideIcon, Settings, UserPlus } from "lucide-react";
+import {
+  Boxes,
+  LogOut,
+  LucideIcon,
+  MessageSquarePlus,
+  Settings,
+  Trash,
+  UserPlus,
+  UsersRound,
+} from "lucide-react";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { useServerStore } from "../_hook/use-server-store";
 import { CreateServerModal } from "./create-server-modal";
@@ -11,15 +20,17 @@ import { ServerSelect } from "./server-select";
 const BaseButton = ({
   icon: Icon,
   children,
+  variant = "ghost",
   onClick,
 }: {
   icon: LucideIcon;
   children: ReactNode;
+  variant?: ButtonProps["variant"];
   onClick?: () => void;
 }) => {
   return (
     <Button
-      variant="ghost"
+      variant={variant}
       onClick={onClick}
       className="h-7 border-dashed border-[1px] border-neutral-300 gap-x-2 p-2"
     >
@@ -49,7 +60,7 @@ export const LayoutHeader = ({
   }, [servers, setCurrentServer, currentServer, setServers]);
 
   return (
-    <div className="p-2 w-full flex items-center gap-x-4">
+    <div className="p-2 w-full flex items-center gap-x-3">
       <div className="w-40">
         <ServerSelect
           onChange={(id) => setCurrentServerId(id)}
@@ -73,6 +84,12 @@ export const LayoutHeader = ({
           )}
         />
       )}
+      <BaseButton icon={UsersRound}>manage</BaseButton>
+      <BaseButton icon={MessageSquarePlus}>add channel</BaseButton>
+      <div className="flex flex-grow justify-end gap-x-3">
+        <BaseButton icon={Trash}>delete</BaseButton>
+        <BaseButton icon={LogOut}>exit</BaseButton>
+      </div>
     </div>
   );
 };
