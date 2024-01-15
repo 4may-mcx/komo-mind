@@ -1,6 +1,6 @@
 import { getChatServers } from "@/app/api/servers/get-chat-servers";
 import { redirect } from "next/navigation";
-import { CreateServerModal } from "./_components/create-server-modal";
+import { ButtonWithCreateServerModal } from "./_components/create-server-modal";
 
 const ChatPage = async () => {
   const servers = await getChatServers();
@@ -9,7 +9,7 @@ const ChatPage = async () => {
 
   if (firstServerId) return redirect(`chat/${firstServerId}`);
 
-  return <CreateServerModal />;
+  return <ButtonWithCreateServerModal />;
 };
 
 export default ChatPage;

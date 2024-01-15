@@ -12,9 +12,9 @@ import { X } from "lucide-react";
 import { ReactNode } from "react";
 import { Button } from "../ui/button";
 
-interface CommonModalProps {
-  title: string;
-  isOpen: boolean;
+export interface CommonModalProps {
+  title?: string;
+  isOpen?: boolean;
   description?: string;
   onOk?: () => void;
   onCancel?: () => void;

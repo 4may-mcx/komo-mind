@@ -1,6 +1,8 @@
 "use client";
 import { FileUpload } from "@/components/file-upload";
-import CommonModal from "@/components/modals/common-modal";
+import CommonModal, {
+  CommonModalProps,
+} from "@/components/modals/common-modal";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,10 +13,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import withModalTrigger from "@/hoc/with-modal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -27,9 +30,7 @@ const formSchema = z.object({
   }),
 });
 
-export const CreateServerModal = () => {
-  const [isMounted, setIsMounted] = useState(false);
-  const [open, setOpen] = useState(false);
+const _CreateServerModal: FC<CommonModalProps> = (props) => {
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -53,20 +54,9 @@ export const CreateServerModal = () => {
     }
   };
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
-
   return (
     <div>
-      <Button onClick={() => setOpen(true)}>Create a server</Button>
-      <CommonModal
-        title="创建你的服务"
-        isOpen={open}
-        onCancel={() => setOpen(false)}
-      >
+      <CommonModal title="创建你的服务" {...props}>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="space-y-8 px-6">
@@ -116,5 +106,15 @@ export const CreateServerModal = () => {
         </Form>
       </CommonModal>
     </div>
+  );
+};
+
+export const CreateServerModal = withModalTrigger(_CreateServerModal);
+
+export const ButtonWithCreateServerModal = () => {
+  return (
+    <CreateServerModal
+      triggerNode={(show) => <Button onClick={show}>Create a server</Button>}
+    />
   );
 };
