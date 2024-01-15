@@ -9,18 +9,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Server } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import { useServerStore } from "../_hook/use-server-store";
 
 export const ServerSelect = ({
-  servers,
   defaultValue,
+  onChange,
 }: {
-  servers: Server[];
   defaultValue: string;
+  onChange?: (id: string) => void;
 }) => {
+  const { servers } = useServerStore();
   const router = useRouter();
   const handleValueChange = (id: string) => {
+    onChange?.(id);
     router.push(`/chat/${id}`);
   };
 

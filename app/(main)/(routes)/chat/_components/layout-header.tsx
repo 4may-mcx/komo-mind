@@ -2,9 +2,11 @@
 import { Button } from "@/components/ui/button";
 import { Server } from "@prisma/client";
 import { Boxes, LucideIcon, Settings, UserPlus } from "lucide-react";
-import { ReactNode } from "react";
-import { ServerSelect } from "./server-select";
+import { ReactNode, useEffect, useMemo, useState } from "react";
+import { useServerStore } from "../_hook/use-server-store";
 import { CreateServerModal } from "./create-server-modal";
+import { InviteModal } from "./invite-modal";
+import { ServerSelect } from "./server-select";
 
 const BaseButton = ({
   icon: Icon,
@@ -34,10 +36,25 @@ export const LayoutHeader = ({
   servers: Server[];
   defaultValue: string;
 }) => {
+  const { setCurrentServer, setServers } = useServerStore();
+  const [currentServerId, setCurrentServerId] = useState(defaultValue);
+  const currentServer = useMemo(
+    () => servers.find((server) => server.id === currentServerId),
+    [currentServerId, servers]
+  );
+
+  useEffect(() => {
+    setServers(servers);
+    setCurrentServer(currentServer);
+  }, [servers, setCurrentServer, currentServer, setServers]);
+
   return (
     <div className="p-2 w-full flex items-center gap-x-4">
       <div className="w-40">
-        <ServerSelect servers={servers} defaultValue={defaultValue} />
+        <ServerSelect
+          onChange={(id) => setCurrentServerId(id)}
+          defaultValue={defaultValue}
+        />
       </div>
       <CreateServerModal
         triggerNode={(show) => (
@@ -47,7 +64,15 @@ export const LayoutHeader = ({
         )}
       />
       <BaseButton icon={Settings}>edit</BaseButton>
-      <BaseButton icon={UserPlus}>invite</BaseButton>
+      {currentServer && (
+        <InviteModal
+          triggerNode={(show) => (
+            <BaseButton onClick={show} icon={UserPlus}>
+              invite
+            </BaseButton>
+          )}
+        />
+      )}
     </div>
   );
 };
