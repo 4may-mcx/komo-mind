@@ -1,6 +1,6 @@
 import { Sidebar } from "../_components/sidebar";
 
-const MarketingLayout = ({ children }: { children: React.ReactNode }) => {
+const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="h-full flex dark:bg-[#1F1F1F]">
       <Sidebar />
@@ -11,4 +11,4 @@ const MarketingLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default MarketingLayout;
+export default MainLayout;
