@@ -72,11 +72,16 @@ const config = {
           "25%, 75%": { transform: "scale(1.5)", opacity: "1" },
           "50%": { transform: "scale(1)", opacity: "1" },
         },
+        rotate: {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(180deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         bounce: "bounce 1s ease-in-out",
+        rotate: "rotate 0.5s",
       },
     },
   },

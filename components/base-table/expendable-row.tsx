@@ -1,9 +1,36 @@
 "use client";
 import { TableCell, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
+import { MinusSquare, PlusSquare } from "lucide-react";
 import { ReactNode, useState } from "react";
 import { BaseTableColumnsType } from "./types";
-import { MinusSquare, PlusSquare } from "lucide-react";
+
+const ToggleButton = ({
+  isExpanded,
+  onClick,
+}: {
+  isExpanded: boolean;
+  onClick: () => void;
+}) => {
+  return (
+    <div className="relative w-4 h-4">
+      <button onClick={onClick} className="absolute top-0 left-0">
+        <MinusSquare
+          className={cn(
+            "absolute h-4 w-4 transition-opacity duration-300",
+            isExpanded ? "opacity-100" : "opacity-0"
+          )}
+        />
+        <PlusSquare
+          className={cn(
+            "absolute h-4 w-4 transition-opacity duration-300",
+            !isExpanded ? "opacity-100" : "opacity-0"
+          )}
+        />
+      </button>
+    </div>
+  );
+};
 
 export const ExpandableRow = <T, K extends keyof T>({
   item,
@@ -25,13 +52,10 @@ export const ExpandableRow = <T, K extends keyof T>({
       <TableRow key={_rowKey}>
         {expandableRender && (
           <TableCell width={10}>
-            <button onClick={() => setIsExpanded(!isExpanded)}>
-              {isExpanded ? (
-                <MinusSquare className="h-4 w-4" />
-              ) : (
-                <PlusSquare className="h-4 w-4" />
-              )}
-            </button>
+            <ToggleButton
+              isExpanded={isExpanded}
+              onClick={() => setIsExpanded(!isExpanded)}
+            />
           </TableCell>
         )}
         {columns.map(({ render, dataIndex, align, width }, index) => {

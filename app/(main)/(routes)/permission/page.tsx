@@ -2,6 +2,7 @@ import BaseTabs, { BaseTabType } from "@/components/base-tabs";
 import { PageLayout } from "@/components/page-layout";
 import { OperationManagementTable } from "./_components/operation-management";
 import { ResourceManagementTable } from "./_components/resource-management";
+import { RoleManagement } from "./_components/role-management";
 import { UserManagementTable } from "./_components/user-management";
 
 const options: BaseTabType[] = [
@@ -19,7 +20,7 @@ const options: BaseTabType[] = [
   },
   {
     title: "角色管理",
-    render: <div>4444</div>,
+    render: <RoleManagement />,
   },
 ];
 
