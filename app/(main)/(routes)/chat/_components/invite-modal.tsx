@@ -19,7 +19,7 @@ const _InviteModal: FC<CommonModalProps> = ({ ...props }) => {
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const inviteUrl = `${origin}/invite/${currentServer?.inviteCode}`;
+  const inviteUrl = `${origin}/chat/invite/${currentServer?.inviteCode}`;
 
   const onCopy = () => {
     navigator.clipboard.writeText(inviteUrl);
