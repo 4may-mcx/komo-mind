@@ -35,12 +35,18 @@ export const ServerSelect = ({
       <SelectContent>
         <SelectGroup>
           {servers.map((server) => (
-            <SelectItem value={server.id} key={server.id}>
+            <SelectItem
+              value={server.id}
+              key={server.id}
+              className="line-clamp-1"
+            >
               <div className="flex items-center gap-x-2">
                 <Avatar className="h-6 w-6">
                   <AvatarImage src={server.imageUrl} />
                 </Avatar>
-                <Typography.Small>{server.name}</Typography.Small>
+                <Typography.Small className="line-clamp-1">
+                  {server.name}
+                </Typography.Small>
               </div>
             </SelectItem>
           ))}

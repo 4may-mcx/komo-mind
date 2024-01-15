@@ -108,7 +108,7 @@ export const CreateServerModal = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit" disabled={isLoading} className="w-full">
+              <Button type="submit" loading={isLoading} className="w-full">
                 CREATE
               </Button>
             </div>

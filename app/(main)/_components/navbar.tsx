@@ -1,7 +1,7 @@
 "use client";
 
 import { ModeToggle } from "@/components/mode-toggle";
-import { Spinner } from "@/components/spinner";
+import { Spinner } from "@/components/ui/spinner";
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
 import { UserButton, useUser } from "@clerk/nextjs";

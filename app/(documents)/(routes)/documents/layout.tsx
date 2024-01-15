@@ -1,7 +1,7 @@
 "use client";
 
 import { SearchCommand } from "@/components/search-command";
-import { Spinner } from "@/components/spinner";
+import { Spinner } from "@/components/ui/spinner";
 import { redirect } from "next/navigation";
 import { Navigation } from "../../_components/navigation";
 
