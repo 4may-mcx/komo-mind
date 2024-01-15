@@ -6,6 +6,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { createPortal } from "react-dom";
 
 type ModalWithTriggerProps = CommonModalProps & {
   triggerNode: (show: () => void) => ReactNode;
@@ -32,7 +33,8 @@ const withModalTrigger = (ModalComponent: ComponentType<CommonModalProps>) => {
     return (
       <>
         {triggerNode(() => setIsOpen(true))}
-        {isMounted && <ModalComponent {...newProps} />}
+        {isMounted &&
+          createPortal(<ModalComponent {...newProps} />, document.body)}
       </>
     );
   };
