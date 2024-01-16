@@ -16,6 +16,7 @@ import { useServerStore } from "../_hook/use-server-store";
 import { CreateServerModal } from "./create-server-modal";
 import { InviteModal } from "./invite-modal";
 import { ServerSelect } from "./server-select";
+import { EditServerModal } from "./edit-server-modal";
 
 const BaseButton = ({
   icon: Icon,
@@ -67,6 +68,7 @@ export const LayoutHeader = ({
           defaultValue={defaultValue}
         />
       </div>
+
       <CreateServerModal
         triggerNode={(show) => (
           <BaseButton onClick={show} icon={Boxes}>
@@ -74,7 +76,15 @@ export const LayoutHeader = ({
           </BaseButton>
         )}
       />
-      <BaseButton icon={Settings}>edit</BaseButton>
+
+      <EditServerModal
+        triggerNode={(show) => (
+          <BaseButton onClick={show} icon={Settings}>
+            edit
+          </BaseButton>
+        )}
+      />
+
       {currentServer && (
         <InviteModal
           triggerNode={(show) => (
