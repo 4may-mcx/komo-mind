@@ -1,3 +1,4 @@
+import { ServerWithMembersWithProfiles } from "@/app/(main)/(routes)/chat/_types";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
@@ -14,6 +15,14 @@ export const getChatServers = async () => {
         },
       },
     },
+    include: {
+      members: {
+        include: {
+          profile: true,
+        },
+      },
+      channels: true,
+    },
   });
-  return servers;
+  return servers as unknown as ServerWithMembersWithProfiles[];
 };

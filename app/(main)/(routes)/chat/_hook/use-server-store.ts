@@ -1,11 +1,11 @@
 import { create } from "zustand";
-import { Server } from "@prisma/client";
+import { ServerWithMembersWithProfiles } from "../_types";
 
 interface ServerStoreState {
-  currentServer: Server | null;
-  servers: Server[];
-  setServers: (servers: Server[]) => void;
-  setCurrentServer: (server?: Server) => void;
+  currentServer: ServerWithMembersWithProfiles | null;
+  servers: ServerWithMembersWithProfiles[];
+  setServers: (servers: ServerWithMembersWithProfiles[]) => void;
+  setCurrentServer: (server?: ServerWithMembersWithProfiles) => void;
 }
 
 export const useServerStore = create<ServerStoreState>((set) => ({

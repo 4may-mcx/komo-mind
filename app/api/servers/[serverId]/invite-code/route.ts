@@ -23,6 +23,14 @@ export async function PATCH(
       data: {
         inviteCode: uuidv4(),
       },
+      include: {
+        members: {
+          include: {
+            profile: true,
+          },
+        },
+        channels: true,
+      },
     });
 
     return NextResponse.json(server);

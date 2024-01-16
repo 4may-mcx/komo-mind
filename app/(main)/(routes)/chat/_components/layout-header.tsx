@@ -1,6 +1,5 @@
 "use client";
 import { Button, ButtonProps } from "@/components/ui/button";
-import { Server } from "@prisma/client";
 import {
   Boxes,
   LogOut,
@@ -13,10 +12,12 @@ import {
 } from "lucide-react";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { useServerStore } from "../_hook/use-server-store";
+import { ServerWithMembersWithProfiles } from "../_types";
 import { CreateServerModal } from "./create-server-modal";
-import { InviteModal } from "./invite-modal";
-import { ServerSelect } from "./server-select";
 import { EditServerModal } from "./edit-server-modal";
+import { InviteModal } from "./invite-modal";
+import { ManageMemberModal } from "./manage-member-modal";
+import { ServerSelect } from "./server-select";
 
 const BaseButton = ({
   icon: Icon,
@@ -45,7 +46,7 @@ export const LayoutHeader = ({
   servers,
   defaultValue,
 }: {
-  servers: Server[];
+  servers: ServerWithMembersWithProfiles[];
   defaultValue: string;
 }) => {
   const { setCurrentServer, setServers } = useServerStore();
@@ -85,16 +86,22 @@ export const LayoutHeader = ({
         )}
       />
 
-      {currentServer && (
-        <InviteModal
-          triggerNode={(show) => (
-            <BaseButton onClick={show} icon={UserPlus}>
-              invite
-            </BaseButton>
-          )}
-        />
-      )}
-      <BaseButton icon={UsersRound}>manage</BaseButton>
+      <InviteModal
+        triggerNode={(show) => (
+          <BaseButton onClick={show} icon={UserPlus}>
+            invite
+          </BaseButton>
+        )}
+      />
+
+      <ManageMemberModal
+        triggerNode={(show) => (
+          <BaseButton onClick={show} icon={UsersRound}>
+            manage
+          </BaseButton>
+        )}
+      />
+
       <BaseButton icon={MessageSquarePlus}>add channel</BaseButton>
       <div className="flex flex-grow justify-end gap-x-3">
         <BaseButton icon={Trash}>delete</BaseButton>

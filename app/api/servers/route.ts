@@ -31,6 +31,14 @@ export async function POST(req: Request) {
           create: [{ profileId: profile.id, role: MemberRole.ADMIN }],
         },
       },
+      include: {
+        members: {
+          include: {
+            profile: true,
+          },
+        },
+        channels: true,
+      },
     });
 
     return NextResponse.json(server);
