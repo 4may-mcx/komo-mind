@@ -4,11 +4,9 @@ import {
   Boxes,
   LogOut,
   LucideIcon,
-  MessageSquarePlus,
   Settings,
   Trash,
   UserPlus,
-  UsersRound,
 } from "lucide-react";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { useServerStore } from "../_hook/use-server-store";
@@ -16,9 +14,7 @@ import { ServerWithMembersWithProfiles } from "../_types";
 import { CreateServerModal } from "./create-server-modal";
 import { EditServerModal } from "./edit-server-modal";
 import { InviteModal } from "./invite-modal";
-import { ManageMemberModal } from "./manage-member-modal";
 import { ServerSelect } from "./server-select";
-import { CreateChannelModal } from "./create-channel-modal";
 
 const BaseButton = ({
   icon: Icon,
@@ -91,22 +87,6 @@ export const LayoutHeader = ({
         triggerNode={(show) => (
           <BaseButton onClick={show} icon={UserPlus}>
             invite
-          </BaseButton>
-        )}
-      />
-
-      <ManageMemberModal
-        triggerNode={(show) => (
-          <BaseButton onClick={show} icon={UsersRound}>
-            manage
-          </BaseButton>
-        )}
-      />
-
-      <CreateChannelModal
-        triggerNode={(show) => (
-          <BaseButton onClick={show} icon={MessageSquarePlus}>
-            add channel
           </BaseButton>
         )}
       />

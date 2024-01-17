@@ -28,32 +28,32 @@ export const ServerSection = ({
         {label}
       </p>
       {role !== MemberRole.GUEST && sectionType === "channels" && (
-        <ActionTooltip label="Create Channel" side="top">
-          <CreateChannelModal
-            triggerNode={(show) => (
+        <CreateChannelModal
+          triggerNode={(show) => (
+            <ActionTooltip label="创建频道" side="top">
               <button
                 onClick={show}
                 className="text-neutral-500 hover:text-neutral-600 dark:text-neutral-400 dark:hover:text-neutral-300 transition"
               >
                 <Plus className="h-4 w-4" />
               </button>
-            )}
-          />
-        </ActionTooltip>
+            </ActionTooltip>
+          )}
+        />
       )}
       {role === MemberRole.ADMIN && sectionType === "members" && (
-        <ActionTooltip label="Manage Members" side="top">
-          <ManageMemberModal
-            triggerNode={(show) => (
+        <ManageMemberModal
+          triggerNode={(show) => (
+            <ActionTooltip label="管理成员" side="top">
               <button
                 onClick={show}
                 className="text-neutral-500 hover:text-neutral-600 dark:text-neutral-400 dark:hover:text-neutral-300 transition"
               >
                 <Settings className="h-4 w-4" />
               </button>
-            )}
-          />
-        </ActionTooltip>
+            </ActionTooltip>
+          )}
+        />
       )}
     </div>
   );
