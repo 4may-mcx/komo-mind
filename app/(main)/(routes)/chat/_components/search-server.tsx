@@ -6,19 +6,14 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { ChannelType, Profile } from "@prisma/client";
+import { Profile } from "@prisma/client";
 import { CommandEmpty } from "cmdk";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { ReactNode, useEffect, useState } from "react";
 import { useServerStore } from "../_hook/use-server-store";
-import {
-  ChannelIconMap,
-  RoleIconMap,
-  ServerWithMembersWithProfiles,
-} from "../_types";
 
-interface DataType {
+export interface SearchDataType {
   label: string;
   type: "channel" | "member";
   data:
@@ -29,69 +24,16 @@ interface DataType {
       }[];
 }
 
-const generateInfos = (
-  server: ServerWithMembersWithProfiles | null,
-  profile: Profile
-): DataType[] | null => {
-  if (!server) return null;
-
-  const textChannels = server.channels.filter(
-    (c) => c.type === ChannelType.TEXT
-  );
-  const audioChannels = server.channels.filter(
-    (c) => c.type === ChannelType.AUDIO
-  );
-  const voiceChannels = server.channels.filter(
-    (c) => c.type === ChannelType.VIDEO
-  );
-  // const members = server.members.filter((m) => m.profileId !== profile.id);
-  const members = server.members;
-
-  return [
-    {
-      label: "Text Channels",
-      type: "channel",
-      data: textChannels.map((c) => ({
-        id: c.id,
-        name: c.name,
-        icon: ChannelIconMap[c.type],
-      })),
-    },
-    {
-      label: "Audio Channels",
-      type: "channel",
-      data: audioChannels.map((c) => ({
-        id: c.id,
-        name: c.name,
-        icon: ChannelIconMap[c.type],
-      })),
-    },
-    {
-      label: "Video Channels",
-      type: "channel",
-      data: voiceChannels.map((c) => ({
-        id: c.id,
-        name: c.name,
-        icon: ChannelIconMap[c.type],
-      })),
-    },
-    {
-      label: "Members",
-      type: "member",
-      data: members.map((m) => ({
-        id: m.id,
-        name: m.profile.name,
-        icon: RoleIconMap[m.role],
-      })),
-    },
-  ];
-};
-
-export const SearchServer = ({ profile }: { profile: Profile }) => {
+export const SearchServer = ({
+  data,
+  profile,
+}: {
+  data?: SearchDataType[];
+  profile: Profile;
+}) => {
   const { currentServer } = useServerStore();
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const data = generateInfos(currentServer, profile);
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -125,7 +67,7 @@ export const SearchServer = ({ profile }: { profile: Profile }) => {
     <div className="h-full w-full">
       <button
         onClick={() => setOpen(true)}
-        className="w-full group p-2 flex items-center gap-x-2 hover:bg-neutral-300 transition"
+        className="h-full w-full group p-2 flex items-center gap-x-2 hover:bg-neutral-300 transition"
       >
         <Search className="h-4 w-4 text-neutral-500" />
         <p className="font-semi text-xs text-neutral-500 group-hover:text-neutral-600 transition">

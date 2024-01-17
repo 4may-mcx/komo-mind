@@ -27,7 +27,6 @@ import {
   ShieldCheck,
   ShieldQuestion,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
 import qs from "query-string";
 import { FC, useState } from "react";
 import { toast } from "sonner";
@@ -35,7 +34,6 @@ import { useServerStore } from "../_hook/use-server-store";
 import { MemberRole2Label, RoleIconMap } from "../_types";
 
 const _ManageMemberModal: FC<CommonModalProps> = ({ ...props }) => {
-  const router = useRouter();
   const { currentServer: server, setCurrentServer } = useServerStore();
   const [loadingId, setLoadingId] = useState("");
 
