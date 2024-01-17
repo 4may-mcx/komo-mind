@@ -1,0 +1,41 @@
+export const LayoutSideList = () => {
+  return (
+    <div className="h-full w-full overflow-y-auto">
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+      <div>11111</div>
+    </div>
+  );
+};

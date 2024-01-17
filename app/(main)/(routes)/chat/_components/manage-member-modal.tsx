@@ -29,16 +29,10 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
-import { FC, ReactNode, useState } from "react";
+import { FC, useState } from "react";
 import { toast } from "sonner";
 import { useServerStore } from "../_hook/use-server-store";
-import { MemberRole2Label } from "../_types";
-
-const roleIconMap: Record<MemberRole, ReactNode | null> = {
-  [MemberRole.GUEST]: null,
-  [MemberRole.ADMIN]: <ShieldCheck className="h-4 w-4 text-indigo-500" />,
-  [MemberRole.MODERATOR]: <ShieldAlert className="h-4 w-4 text-green-600" />,
-};
+import { MemberRole2Label, RoleIconMap } from "../_types";
 
 const _ManageMemberModal: FC<CommonModalProps> = ({ ...props }) => {
   const router = useRouter();
@@ -85,7 +79,7 @@ const _ManageMemberModal: FC<CommonModalProps> = ({ ...props }) => {
               <div className="flex flex-col gap-y-1">
                 <div className="text-xs font-semibold flex items-center gap-x-1">
                   {member.profile.name.replace("null", "")}
-                  {roleIconMap[member.role]}
+                  {RoleIconMap[member.role]}
                 </div>
                 <p className="text-xs text-neutral-500">
                   {member.profile.email}

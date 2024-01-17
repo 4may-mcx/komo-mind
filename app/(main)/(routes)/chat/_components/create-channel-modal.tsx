@@ -87,7 +87,7 @@ const _CreateChannelModal: FC<CommonModalProps> = (props) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-xs font-bold text-zinc-500 dark:text-secondary/70">
-                      频道名称
+                      频道名称（不能含有中文字符，有bug，懒得修）
                     </FormLabel>
                     <FormControl>
                       <Input
