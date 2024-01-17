@@ -10,6 +10,8 @@ const TodoPage = () => {
       <p>invite之后自动弹出一个Modal表示欢迎</p>
       <p>支持修改用户信息</p>
       <p>封装dropdown</p>
+      <p>封装select</p>
+      <p>chat server 根据用户权限展示可以操作的按钮</p>
     </div>
   );
 };

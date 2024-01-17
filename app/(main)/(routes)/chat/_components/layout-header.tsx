@@ -18,6 +18,7 @@ import { EditServerModal } from "./edit-server-modal";
 import { InviteModal } from "./invite-modal";
 import { ManageMemberModal } from "./manage-member-modal";
 import { ServerSelect } from "./server-select";
+import { CreateChannelModal } from "./create-channel-modal";
 
 const BaseButton = ({
   icon: Icon,
@@ -102,7 +103,14 @@ export const LayoutHeader = ({
         )}
       />
 
-      <BaseButton icon={MessageSquarePlus}>add channel</BaseButton>
+      <CreateChannelModal
+        triggerNode={(show) => (
+          <BaseButton onClick={show} icon={MessageSquarePlus}>
+            add channel
+          </BaseButton>
+        )}
+      />
+
       <div className="flex flex-grow justify-end gap-x-3">
         <BaseButton icon={Trash}>delete</BaseButton>
         <BaseButton icon={LogOut}>exit</BaseButton>
