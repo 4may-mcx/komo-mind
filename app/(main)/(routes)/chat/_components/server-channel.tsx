@@ -43,10 +43,10 @@ export const ServerChannel = ({
           "bg-neutral-700/20 dark:bg-neutral-700"
       )}
     >
-      <Icon className="flex-shrink-0 w-4 h-4 text-neutral-500 dark:text-neutral-400" />
+      <Icon className="flex-shrink-0 w-[1.1rem] h-[1.1rem] text-neutral-500 dark:text-neutral-400" />
       <p
         className={cn(
-          "line-clamp-1 font-semibold text-xs text-neutral-500 group-hover:text-neutral-600 dark:text-neutral-400 dark:group-hover:text-neutral-300 transition",
+          "line-clamp-1 font-semibold text-sm text-neutral-600 dark:text-neutral-300 transition",
           params?.channelId === channel.id &&
             "text-primary dark:text-neutral-200 dark:group-hover:text-white"
         )}

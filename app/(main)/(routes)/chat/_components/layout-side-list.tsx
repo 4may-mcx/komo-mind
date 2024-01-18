@@ -81,14 +81,16 @@ export const LayoutSideList = ({ profile }: { profile: Profile }) => {
   if (!server) return null;
 
   const { data, info } = generateData(server, profile) ?? {};
-  const role = server?.members?.find((member) => member.profileId === profile.id)?.role;
+  const role = server?.members?.find(
+    (member) => member.profileId === profile.id
+  )?.role;
 
   return (
     <>
       <div className="h-[2.5rem] w-full border-b-[2px] border-neutral-300">
         <SearchServer data={data} profile={profile} />
       </div>
-      <div className="h-[calc(100%-2.5rem)] w-full overflow-y-auto px-3 pt-2 space-y-4">
+      <div className="h-[calc(100%-2.5rem)] w-52 overflow-y-auto px-3 pt-2 space-y-4">
         {!!info?.textChannels?.length && (
           <div>
             <ServerSection

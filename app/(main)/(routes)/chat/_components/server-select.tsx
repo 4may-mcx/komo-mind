@@ -27,7 +27,7 @@ export const ServerSelect = ({
 
   return (
     <Select defaultValue={defaultValue} onValueChange={handleValueChange}>
-      <SelectTrigger className="w-full h-7 border-[1px] border-neutral-300">
+      <SelectTrigger className="w-full h-8 border-[1px] border-neutral-300">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>

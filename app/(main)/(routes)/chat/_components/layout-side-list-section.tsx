@@ -24,7 +24,7 @@ export const ServerSection = ({
 }: ServerSectionProps) => {
   return (
     <div className="flex items-center justify-between py-1">
-      <p className="text-xs uppercase font-semibold text-neutral-500 dark:text-neutral-400">
+      <p className="text-sm uppercase font-semibold text-neutral-600 dark:text-neutral-300">
         {label}
       </p>
       {role !== MemberRole.GUEST && sectionType === "channels" && (

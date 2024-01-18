@@ -70,7 +70,6 @@ const _EditChannelModal: FC<CommonModalProps & { channel: Channel }> = ({
       });
       await axios.patch(url, values);
 
-      form.reset();
       router.refresh();
       toast.success("频道编辑成功");
       props?.onCancel?.();

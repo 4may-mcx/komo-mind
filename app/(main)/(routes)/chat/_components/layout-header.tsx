@@ -33,7 +33,7 @@ const BaseButton = ({
     <Button
       variant={variant}
       onClick={onClick}
-      className="h-7 border-dashed border-[1px] border-neutral-300 gap-x-2 p-2  text-neutral-600 dark:text-neutral-400"
+      className="h-8 border-dashed border-[1px] border-neutral-400 gap-x-2 p-2  text-neutral-600 dark:text-neutral-400"
     >
       <Icon className="h-[0.9rem] w-[0.9rem]" />
       <span className="text-sm">{children}</span>
@@ -61,7 +61,7 @@ export const LayoutHeader = ({
   }, [servers, setCurrentServer, currentServer, setServers]);
 
   return (
-    <div className="p-2 w-full flex items-center gap-x-3">
+    <div className="p-2 w-full h-full flex items-center gap-x-3">
       <div className="w-40">
         <ServerSelect
           onChange={(id) => setCurrentServerId(id)}
