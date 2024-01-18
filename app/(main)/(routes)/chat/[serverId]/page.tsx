@@ -1,17 +1,44 @@
+import { currentProfile } from "@/lib/current-profile";
+import { db } from "@/lib/db";
+import { redirectToSignIn } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
-const ServerPage = ({
+const ServerPage = async ({
   params: { serverId },
 }: {
   params: { serverId: string };
 }) => {
   if (serverId === "invite") return redirect("/chat");
-  return (
-    <div>
-      {/* <CreateServerModal /> */}
-      active: {serverId}
-    </div>
-  );
+
+  const profile = await currentProfile();
+  if (!profile) return redirectToSignIn();
+
+  const server = await db.server.findUnique({
+    where: {
+      id: serverId,
+      members: {
+        some: {
+          profileId: profile.id,
+        },
+      },
+    },
+    include: {
+      channels: {
+        where: {
+          name: "general",
+        },
+        orderBy: {
+          createdAt: "asc",
+        },
+      },
+    },
+  });
+
+  const initialChannel = server?.channels[0];
+
+  if (initialChannel?.name !== "general") return null;
+
+  return redirect(`/chat/${serverId}/channels/${initialChannel.id}`);
 };
 
 export default ServerPage;
