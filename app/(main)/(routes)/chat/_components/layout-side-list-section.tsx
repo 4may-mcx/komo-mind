@@ -1,9 +1,9 @@
 "use client";
 
+import { ActionTooltip } from "@/components/action-tooltip";
 import { ChannelType, MemberRole } from "@prisma/client";
 import { Plus, Settings } from "lucide-react";
 import { ServerWithMembersWithProfiles } from "../_types";
-import { ActionTooltip } from "@/components/action-tooltip";
 import { CreateChannelModal } from "./create-channel-modal";
 import { ManageMemberModal } from "./manage-member-modal";
 
@@ -29,6 +29,7 @@ export const ServerSection = ({
       </p>
       {role !== MemberRole.GUEST && sectionType === "channels" && (
         <CreateChannelModal
+          defaultType={channelType}
           triggerNode={(show) => (
             <ActionTooltip label="创建频道" side="top">
               <button

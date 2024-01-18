@@ -27,7 +27,6 @@ import { useRouter } from "next/navigation";
 import qs from "query-string";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import * as z from "zod";
 import { useServerStore } from "../_hook/use-server-store";
 
@@ -44,14 +43,14 @@ const formSchema = z.object({
   type: z.nativeEnum(ChannelType),
 });
 
-const _CreateChannelModal: FC<CommonModalProps> = (props) => {
+const _CreateChannelModal: FC<CommonModalProps & {defaultType?: ChannelType}> = (props) => {
   const { currentServer: server } = useServerStore();
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      type: ChannelType.TEXT,
+      type: props.defaultType ?? ChannelType.TEXT,
     },
   });
 

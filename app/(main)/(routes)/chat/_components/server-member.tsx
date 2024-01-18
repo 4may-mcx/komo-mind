@@ -1,11 +1,9 @@
 "use client";
 
-import { Member, MemberRole, Profile, Server } from "@prisma/client";
-import { ShieldAlert, ShieldCheck } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
-
-import { cn } from "@/lib/utils";
 import { UserAvatar } from "@/components/user-avatar";
+import { cn } from "@/lib/utils";
+import { Member, Profile, Server } from "@prisma/client";
+import { useParams, useRouter } from "next/navigation";
 import { RoleIconMap } from "../_types";
 
 interface ServerMemberProps {

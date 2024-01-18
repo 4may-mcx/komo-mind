@@ -70,7 +70,7 @@ export const SearchServer = ({
         className="h-full w-full group p-2 flex items-center gap-x-2 hover:bg-neutral-300 transition"
       >
         <Search className="h-4 w-4 text-neutral-500" />
-        <p className="font-semi text-xs text-neutral-500 group-hover:text-neutral-600 transition">
+        <p className="text-sm text-neutral-500 group-hover:text-neutral-600 transition">
           Search
         </p>
         <kbd className="h-5 pointer-events-none inline-flex translate-y-[0.1rem] select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground ml-auto">
@@ -80,7 +80,7 @@ export const SearchServer = ({
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="搜索所有频道和成员" />
         <CommandList>
-          <CommandEmpty>没有结果嘞</CommandEmpty>
+          <CommandEmpty className="flex justify-center p-4">sorry~ 没有结果嘞</CommandEmpty>
           {data?.map(({ label, type, data }) => {
             if (!data.length) return null;
 

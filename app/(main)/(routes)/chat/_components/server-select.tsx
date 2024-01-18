@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Cuboid } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useServerStore } from "../_hook/use-server-store";
 
@@ -44,7 +45,7 @@ export const ServerSelect = ({
                   <AvatarImage src={server.imageUrl} />
                   <AvatarFallback>#</AvatarFallback>
                 </Avatar> */}
-                <span>{"#"}</span>
+                <Cuboid className="h-3 w-3" />
                 <Typography.Small className="line-clamp-1">
                   {server.name}
                 </Typography.Small>

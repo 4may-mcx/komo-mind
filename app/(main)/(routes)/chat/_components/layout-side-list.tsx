@@ -1,13 +1,13 @@
 "use client";
 import { ChannelType, Profile } from "@prisma/client";
-import { SearchDataType, SearchServer } from "./search-server";
+import { useServerStore } from "../_hook/use-server-store";
 import {
   ChannelIconMap,
   RoleIconMap,
   ServerWithMembersWithProfiles,
 } from "../_types";
-import { useServerStore } from "../_hook/use-server-store";
 import { ServerSection } from "./layout-side-list-section";
+import { SearchDataType, SearchServer } from "./search-server";
 import { ServerChannel } from "./server-channel";
 import { ServerMember } from "./server-member";
 
@@ -87,7 +87,7 @@ export const LayoutSideList = ({ profile }: { profile: Profile }) => {
 
   return (
     <>
-      <div className="h-[2.5rem] w-full border-b-[2px] border-neutral-200">
+      <div className="h-[2.5rem] w-full border-b-[2px] border-neutral-300">
         <SearchServer data={data} profile={profile} />
       </div>
       <div className="h-[calc(100%-2.5rem)] w-full overflow-y-auto px-3 pt-2 space-y-4">
@@ -117,7 +117,7 @@ export const LayoutSideList = ({ profile }: { profile: Profile }) => {
               sectionType="channels"
               channelType={ChannelType.AUDIO}
               role={role}
-              label="Voice Channels"
+              label="Audio Channels"
             />
             <div className="space-y-[2px]">
               {info?.audioChannels.map((channel) => (

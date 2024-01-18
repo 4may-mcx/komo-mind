@@ -31,7 +31,7 @@ const BaseButton = ({
     <Button
       variant={variant}
       onClick={onClick}
-      className="h-7 border-dashed border-[1px] border-neutral-300 gap-x-2 p-2"
+      className="h-7 border-dashed border-[1px] border-neutral-300 gap-x-2 p-2  text-neutral-600 dark:text-neutral-400"
     >
       <Icon className="h-[0.9rem] w-[0.9rem]" />
       <span className="text-sm">{children}</span>
