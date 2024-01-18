@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
+import { SocketProvider } from "@/providers/socket-provider";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -39,15 +40,17 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="komo-theme-2"
           >
-            <Toaster
-              position="bottom-left"
-              toastOptions={{
-                style: {
-                  width: "fit-content",
-                },
-              }}
-            />
-            {children}
+            <SocketProvider>
+              <Toaster
+                position="bottom-left"
+                toastOptions={{
+                  style: {
+                    width: "fit-content",
+                  },
+                }}
+              />
+              {children}
+            </SocketProvider>
           </ThemeProvider>
         </body>
       </html>
