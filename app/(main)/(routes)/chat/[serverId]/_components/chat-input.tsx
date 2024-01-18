@@ -1,16 +1,16 @@
 "use client";
 
-import * as z from "zod";
-import axios from "axios";
-import qs from "query-string";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Plus } from "lucide-react";
-import { useRouter } from "next/navigation";
-
+import { EmojiPicker } from "@/components/emoji-picker";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { EmojiPicker } from "@/components/emoji-picker";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import qs from "query-string";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import * as z from "zod";
 
 interface ChatInputProps {
   apiUrl: string;
@@ -63,7 +63,10 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
                 <div className="relative p-4 pb-4">
                   <button
                     type="button"
-                    // onClick={() => onOpen("messageFile", { apiUrl, query })}
+                    onClick={() => {
+                      // onOpen("messageFile", { apiUrl, query })
+                      toast.error("别急，这功能还没做呢");
+                    }}
                     className="absolute top-7 left-8 h-[24px] w-[24px] bg-neutral-500 dark:bg-neutral-400 hover:bg-neutral-600 dark:hover:bg-neutral-300 transition rounded-full p-1 flex items-center justify-center"
                   >
                     <Plus className="text-white dark:text-[#313338]" />

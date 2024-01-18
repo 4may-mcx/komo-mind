@@ -6,6 +6,7 @@ import { Open_Sans } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { SocketProvider } from "@/providers/socket-provider";
+import { QueryProvider } from "@/providers/query-provider";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -49,7 +50,7 @@ export default function RootLayout({
                   },
                 }}
               />
-              {children}
+              <QueryProvider>{children}</QueryProvider>
             </SocketProvider>
           </ThemeProvider>
         </body>
