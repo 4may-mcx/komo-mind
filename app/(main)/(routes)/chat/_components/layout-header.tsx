@@ -16,6 +16,7 @@ import { EditServerModal } from "./modals/edit-server-modal";
 import { InviteModal } from "./modals/invite-modal";
 import { ServerSelect } from "./server-select";
 import { DeleteServerModal } from "./modals/delete-server-modal";
+import { ExitServerModal } from "./modals/exit-server-modal";
 
 const BaseButton = ({
   icon: Icon,
@@ -100,8 +101,13 @@ export const LayoutHeader = ({
             </BaseButton>
           )}
         />
-
-        <BaseButton icon={LogOut}>exit</BaseButton>
+        <ExitServerModal
+          triggerNode={(show) => (
+            <BaseButton onClick={show} icon={LogOut}>
+              exit
+            </BaseButton>
+          )}
+        />
       </div>
     </div>
   );

@@ -65,7 +65,7 @@ const _EditServerModal: FC<CommonModalProps> = (props) => {
 
   return (
     <div>
-      <CommonModal title="创建你的服务" {...props}>
+      <CommonModal title="编辑你的服务" {...props}>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="space-y-8 px-6">
@@ -108,7 +108,7 @@ const _EditServerModal: FC<CommonModalProps> = (props) => {
                 )}
               />
               <Button type="submit" loading={isLoading} className="w-full">
-                CREATE
+                CONFIRM
               </Button>
             </div>
           </form>

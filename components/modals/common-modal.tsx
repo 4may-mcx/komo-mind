@@ -37,7 +37,7 @@ const CommonModal = ({
 
   return (
     <AlertDialog open={isOpen} defaultOpen={isOpen} onOpenChange={onChange}>
-      <AlertDialogContent>
+      <AlertDialogContent onClick={(e) => e.stopPropagation()}>
         <AlertDialogHeader>
           <div className="flex justify-between">
             <AlertDialogTitle>{title}</AlertDialogTitle>

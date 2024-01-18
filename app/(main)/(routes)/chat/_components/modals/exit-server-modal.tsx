@@ -9,40 +9,39 @@ import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 import { useServerStore } from "../../_hook/use-server-store";
 
-const _DeleteServerModal: FC<CommonModalProps> = (props) => {
+const _ExitServerModal: FC<CommonModalProps> = (props) => {
   const router = useRouter();
   const { currentServer } = useServerStore();
 
   const [isLoading, setIsLoading] = useState(false);
 
   const onClick = async () => {
-    try {
-      setIsLoading(true);
-      await axios.delete(`/api/servers/${currentServer?.id}`);
-
-      router.refresh();
-      router.push("/chat");
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
+    // try {
+    //   setIsLoading(true);
+    //   await axios.delete(`/api/servers/${currentServer?.id}`);
+    //   router.refresh();
+    //   router.push("/chat");
+    //   window.location.reload();
+    // } catch (error) {
+    //   console.log(error);
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   return (
     <CommonModal
-      title="删除服务"
+      title="退出服务"
       description={
         <>
-          你确定要删除「
+          你确定要退出「
           <span className="font-bold text-lg"> {currentServer?.name} </span>
           」服务吗？
         </>
       }
       footer={
         <Button onClick={onClick} loading={isLoading}>
-          确认删除
+          确认退出
         </Button>
       }
       {...props}
@@ -50,4 +49,4 @@ const _DeleteServerModal: FC<CommonModalProps> = (props) => {
   );
 };
 
-export const DeleteServerModal = withModalTrigger(_DeleteServerModal);
+export const ExitServerModal = withModalTrigger(_ExitServerModal);

@@ -1,6 +1,4 @@
 "use client";
-
-import Typography from "@/components/typography";
 import {
   Select,
   SelectContent,
@@ -35,20 +33,14 @@ export const ServerSelect = ({
       <SelectContent>
         <SelectGroup>
           {servers.map((server) => (
-            <SelectItem
-              value={server.id}
-              key={server.id}
-              className="line-clamp-1"
-            >
-              <div className="h-full flex items-center gap-x-2">
+            <SelectItem value={server.id} key={server.id}>
+              <div className="flex h-full items-center gap-x-2">
                 {/* <Avatar className="h-6 w-6">
                   <AvatarImage src={server.imageUrl} />
                   <AvatarFallback>#</AvatarFallback>
                 </Avatar> */}
-                <Cuboid className="h-3 w-3" />
-                <Typography.Small className="line-clamp-1">
-                  {server.name}
-                </Typography.Small>
+                <Cuboid className="h-3.5 w-3.5" />
+                <p className="truncate flex-1">{server.name}</p>
               </div>
             </SelectItem>
           ))}

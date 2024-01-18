@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 import { Channel, ChannelType, MemberRole, Server } from "@prisma/client";
 import { Edit, Hash, Lock, Mic, Trash, Video } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
+import { DeleteChannelModal } from "./modals/delete-channel-modal";
+import { EditChannelModal } from "./modals/edit-channel-modal";
 
 interface ServerChannelProps {
   channel: Channel;
@@ -37,7 +39,8 @@ export const ServerChannel = ({
       onClick={onClick}
       className={cn(
         "group px-2 py-1.5 rounded-md flex items-center gap-x-2 w-full hover:bg-neutral-700/10 dark:hover:bg-neutral-700/50 transition mb-1",
-        params?.channelId === channel.id && "bg-neutral-700/20 dark:bg-neutral-700"
+        params?.channelId === channel.id &&
+          "bg-neutral-700/20 dark:bg-neutral-700"
       )}
     >
       <Icon className="flex-shrink-0 w-4 h-4 text-neutral-500 dark:text-neutral-400" />
@@ -52,12 +55,35 @@ export const ServerChannel = ({
       </p>
       {channel.name !== "general" && role !== MemberRole.GUEST && (
         <div className="ml-auto flex items-center gap-x-2">
-          <ActionTooltip label="编辑">
-            <Edit className="hidden group-hover:block w-4 h-4 text-neutral-500 hover:text-neutral-600 dark:text-neutral-400 dark:hover:text-neutral-300 transition" />
-          </ActionTooltip>
-          <ActionTooltip label="删除">
-            <Trash className="hidden group-hover:block w-4 h-4 text-neutral-500 hover:text-neutral-600 dark:text-neutral-400 dark:hover:text-neutral-300 transition" />
-          </ActionTooltip>
+          <EditChannelModal
+            defaultName={channel.name}
+            defaultType={channel.type}
+            triggerNode={(show) => (
+              <ActionTooltip label="编辑">
+                <Edit
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    show();
+                  }}
+                  className="hidden group-hover:block w-4 h-4 text-neutral-500 hover:text-neutral-600 dark:text-neutral-400 dark:hover:text-neutral-300 transition"
+                />
+              </ActionTooltip>
+            )}
+          />
+          <DeleteChannelModal
+            channel={channel}
+            triggerNode={(show) => (
+              <ActionTooltip label="删除">
+                <Trash
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    show();
+                  }}
+                  className="hidden group-hover:block w-4 h-4 text-neutral-500 hover:text-neutral-600 dark:text-neutral-400 dark:hover:text-neutral-300 transition"
+                />
+              </ActionTooltip>
+            )}
+          />
         </div>
       )}
       {channel.name === "general" && (
