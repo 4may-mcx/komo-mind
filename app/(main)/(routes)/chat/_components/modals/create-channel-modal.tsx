@@ -20,6 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import withModalTrigger from "@/hoc/with-modal";
+import useModalProps from "@/hooks/use-modal-props";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChannelType } from "@prisma/client";
 import axios from "axios";
@@ -27,6 +28,7 @@ import { useRouter } from "next/navigation";
 import qs from "query-string";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import * as z from "zod";
 import { useServerStore } from "../../_hook/use-server-store";
 
@@ -43,14 +45,17 @@ const formSchema = z.object({
   type: z.nativeEnum(ChannelType),
 });
 
-const _CreateChannelModal: FC<CommonModalProps & {defaultType?: ChannelType}> = (props) => {
+const _CreateChannelModal: FC<
+  CommonModalProps & { defaultType?: ChannelType }
+> = ({ defaultType, isOpen: _isOpen, ...props }) => {
+  const { isOpen, closeModal } = useModalProps(true);
   const { currentServer: server } = useServerStore();
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      type: props.defaultType ?? ChannelType.TEXT,
+      type: defaultType ?? ChannelType.TEXT,
     },
   });
 
@@ -68,7 +73,8 @@ const _CreateChannelModal: FC<CommonModalProps & {defaultType?: ChannelType}> = 
 
       form.reset();
       router.refresh();
-      window.location.reload();
+      toast.success("频道创建成功");
+      closeModal();
     } catch (error) {
       console.log(error);
     }
@@ -76,7 +82,7 @@ const _CreateChannelModal: FC<CommonModalProps & {defaultType?: ChannelType}> = 
 
   return (
     <div>
-      <CommonModal title="创建频道" {...props}>
+      <CommonModal title="创建频道" isOpen={isOpen && _isOpen} {...props}>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="space-y-4 px-6">

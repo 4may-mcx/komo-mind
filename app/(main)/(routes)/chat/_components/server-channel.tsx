@@ -56,8 +56,7 @@ export const ServerChannel = ({
       {channel.name !== "general" && role !== MemberRole.GUEST && (
         <div className="ml-auto flex items-center gap-x-2">
           <EditChannelModal
-            defaultName={channel.name}
-            defaultType={channel.type}
+            channel={channel}
             triggerNode={(show) => (
               <ActionTooltip label="编辑">
                 <Edit

@@ -20,13 +20,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import withModalTrigger from "@/hoc/with-modal";
+import useModalProps from "@/hooks/use-modal-props";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChannelType } from "@prisma/client";
+import { Channel, ChannelType } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import qs from "query-string";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import * as z from "zod";
 import { useServerStore } from "../../_hook/use-server-store";
 
@@ -43,16 +45,19 @@ const formSchema = z.object({
   type: z.nativeEnum(ChannelType),
 });
 
-const _EditChannelModal: FC<
-  CommonModalProps & { defaultType?: ChannelType; defaultName?: string }
-> = (props) => {
+const _EditChannelModal: FC<CommonModalProps & { channel: Channel }> = ({
+  channel,
+  isOpen: _isOpen,
+  ...props
+}) => {
+  const { isOpen, closeModal } = useModalProps(true);
   const { currentServer: server } = useServerStore();
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: props.defaultName ?? "",
-      type: props.defaultType ?? ChannelType.TEXT,
+      name: channel?.name ?? "",
+      type: channel?.type ?? ChannelType.TEXT,
     },
   });
 
@@ -61,23 +66,29 @@ const _EditChannelModal: FC<
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const url = qs.stringifyUrl({
-        url: "/api/channels",
+        url: `/api/channels/${channel?.id}`,
         query: {
           serverId: server?.id,
         },
       });
-      await axios.post(url, values);
+      await axios.patch(url, values);
 
       form.reset();
       router.refresh();
-      window.location.reload();
+      toast.success("频道编辑成功");
+      closeModal();
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <CommonModal title="编辑频道" {...props}>
+    <CommonModal
+      title="编辑频道"
+      isOpen={isOpen && _isOpen}
+      onCancel={closeModal}
+      {...props}
+    >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="space-y-4 px-6">

@@ -21,6 +21,8 @@ import { FC, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useServerStore } from "../../_hook/use-server-store";
+import useModalProps from "@/hooks/use-modal-props";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -31,7 +33,11 @@ const formSchema = z.object({
   }),
 });
 
-const _EditServerModal: FC<CommonModalProps> = (props) => {
+const _EditServerModal: FC<CommonModalProps> = ({
+  isOpen: _isOpen,
+  ...props
+}) => {
+  const { isOpen, closeModal } = useModalProps(true);
   const router = useRouter();
 
   const { currentServer: server, setCurrentServer } = useServerStore();
@@ -57,7 +63,8 @@ const _EditServerModal: FC<CommonModalProps> = (props) => {
       setCurrentServer(_server.data);
 
       router.refresh();
-      window.location.reload();
+      toast.success("服务编辑成功");
+      closeModal();
     } catch (error) {
       console.log(error);
     }
@@ -65,7 +72,7 @@ const _EditServerModal: FC<CommonModalProps> = (props) => {
 
   return (
     <div>
-      <CommonModal title="编辑你的服务" {...props}>
+      <CommonModal title="编辑你的服务" isOpen={isOpen && _isOpen} {...props}>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="space-y-8 px-6">
