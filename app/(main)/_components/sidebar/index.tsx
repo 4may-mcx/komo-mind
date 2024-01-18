@@ -58,7 +58,7 @@ export const Sidebar = () => {
               const active =
                 item.path === "/"
                   ? pathname === "/"
-                  : pathname.startsWith(item.path);
+                  : pathname?.startsWith(item.path);
               return (
                 <div
                   onClick={() => router.push(item.path)}
