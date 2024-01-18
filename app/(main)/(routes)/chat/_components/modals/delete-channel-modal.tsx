@@ -10,17 +10,14 @@ import { useRouter } from "next/navigation";
 import qs from "query-string";
 import { FC, useState } from "react";
 import { useServerStore } from "../../_hook/use-server-store";
-import useModalProps from "@/hooks/use-modal-props";
 import { toast } from "sonner";
 
 const _DeleteChannelModal: FC<CommonModalProps & { channel: Channel }> = ({
-  isOpen: _isOpen,
   channel,
   ...props
 }) => {
   const router = useRouter();
   const { currentServer: server } = useServerStore();
-  const { isOpen, closeModal } = useModalProps(true);
   const [isLoading, setIsLoading] = useState(false);
 
   const onClick = async () => {
@@ -37,7 +34,7 @@ const _DeleteChannelModal: FC<CommonModalProps & { channel: Channel }> = ({
 
       router.refresh();
       toast.success("频道删除成功");
-      closeModal();
+      props?.onCancel?.();
     } catch (error) {
       console.log(error);
     } finally {
@@ -60,7 +57,6 @@ const _DeleteChannelModal: FC<CommonModalProps & { channel: Channel }> = ({
           确认删除
         </Button>
       }
-      isOpen={isOpen && _isOpen}
       {...props}
     />
   );

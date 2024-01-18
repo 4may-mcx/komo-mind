@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import withModalTrigger from "@/hoc/with-modal";
-import useModalProps from "@/hooks/use-modal-props";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -32,11 +31,7 @@ const formSchema = z.object({
   }),
 });
 
-const _CreateServerModal: FC<CommonModalProps> = ({
-  isOpen: _isOpen,
-  ...props
-}) => {
-  const { isOpen, closeModal } = useModalProps(true);
+const _CreateServerModal: FC<CommonModalProps> = (props) => {
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -55,7 +50,7 @@ const _CreateServerModal: FC<CommonModalProps> = ({
       form.reset();
       router.refresh();
       toast.success("服务创建成功");
-      closeModal();
+      props?.onCancel?.();
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +58,7 @@ const _CreateServerModal: FC<CommonModalProps> = ({
 
   return (
     <div>
-      <CommonModal title="创建你的服务" isOpen={isOpen && _isOpen} {...props}>
+      <CommonModal title="创建你的服务" {...props}>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="space-y-8 px-6">

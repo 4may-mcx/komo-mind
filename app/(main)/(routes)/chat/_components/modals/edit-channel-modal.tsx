@@ -20,7 +20,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import withModalTrigger from "@/hoc/with-modal";
-import useModalProps from "@/hooks/use-modal-props";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Channel, ChannelType } from "@prisma/client";
 import axios from "axios";
@@ -47,10 +46,8 @@ const formSchema = z.object({
 
 const _EditChannelModal: FC<CommonModalProps & { channel: Channel }> = ({
   channel,
-  isOpen: _isOpen,
   ...props
 }) => {
-  const { isOpen, closeModal } = useModalProps(true);
   const { currentServer: server } = useServerStore();
   const router = useRouter();
   const form = useForm({
@@ -76,19 +73,14 @@ const _EditChannelModal: FC<CommonModalProps & { channel: Channel }> = ({
       form.reset();
       router.refresh();
       toast.success("频道编辑成功");
-      closeModal();
+      props?.onCancel?.();
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <CommonModal
-      title="编辑频道"
-      isOpen={isOpen && _isOpen}
-      onCancel={closeModal}
-      {...props}
-    >
+    <CommonModal title="编辑频道" {...props}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="space-y-4 px-6">
