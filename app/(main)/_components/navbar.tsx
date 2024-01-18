@@ -4,23 +4,12 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { Spinner } from "@/components/ui/spinner";
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
-import { SignedIn, UserButton, useUser } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 import { Logo } from "./logo";
-
-const ClerkLogin = () => {
-  const { user, isLoaded } = useUser();
-
-  return !isLoaded ? (
-    <Spinner />
-  ) : !!user ? (
-    <UserButton afterSignOutUrl="/" />
-  ) : (
-    <SignedIn />
-  );
-};
 
 export const NavBar = () => {
   const scrolled = useScrollTop();
+  const { isLoaded } = useUser();
 
   return (
     <div
@@ -33,7 +22,7 @@ export const NavBar = () => {
 
       <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
         <ModeToggle />
-        <ClerkLogin />
+        {isLoaded ? <UserButton afterSignOutUrl="/" /> : <Spinner />}
       </div>
     </div>
   );

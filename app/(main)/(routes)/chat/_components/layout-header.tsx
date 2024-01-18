@@ -12,11 +12,11 @@ import { ReactNode, useEffect, useMemo, useState } from "react";
 import { useServerStore } from "../_hook/use-server-store";
 import { ServerWithMembersWithProfiles } from "../_types";
 import { CreateServerModal } from "./modals/create-server-modal";
+import { DeleteServerModal } from "./modals/delete-server-modal";
 import { EditServerModal } from "./modals/edit-server-modal";
 import { InviteModal } from "./modals/invite-modal";
+import { LeaveServerModal } from "./modals/leave-server-modal";
 import { ServerSelect } from "./server-select";
-import { DeleteServerModal } from "./modals/delete-server-modal";
-import { ExitServerModal } from "./modals/exit-server-modal";
 
 const BaseButton = ({
   icon: Icon,
@@ -101,7 +101,7 @@ export const LayoutHeader = ({
             </BaseButton>
           )}
         />
-        <ExitServerModal
+        <LeaveServerModal
           triggerNode={(show) => (
             <BaseButton onClick={show} icon={LogOut}>
               exit

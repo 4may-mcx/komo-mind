@@ -10,7 +10,7 @@ import { FC, useState } from "react";
 import { useServerStore } from "../../_hook/use-server-store";
 import { toast } from "sonner";
 
-const _ExitServerModal: FC<CommonModalProps> = (props) => {
+const _LeaveServerModal: FC<CommonModalProps> = (props) => {
   const router = useRouter();
   const { currentServer } = useServerStore();
 
@@ -19,7 +19,8 @@ const _ExitServerModal: FC<CommonModalProps> = (props) => {
   const onClick = async () => {
     // try {
     //   setIsLoading(true);
-    //   await axios.delete(`/api/servers/${currentServer?.id}`);
+    //   await await axios.patch(`/api/servers/${server?.id}/leave`);
+
     //   router.refresh();
     //   router.push("/chat");
     //   window.location.reload();
@@ -51,4 +52,4 @@ const _ExitServerModal: FC<CommonModalProps> = (props) => {
   );
 };
 
-export const ExitServerModal = withModalTrigger(_ExitServerModal);
+export const LeaveServerModal = withModalTrigger(_LeaveServerModal);
