@@ -10,7 +10,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
     currentProfile(),
   ]);
 
-  const firstServerId = servers?.[0].id;
+  const firstServerId = servers?.[0]?.id;
 
   return (
     <div className="h-[90%] w-[90%] flex flex-col rounded-lg border-[1.5px] border-neutral-300 shadow-lg">

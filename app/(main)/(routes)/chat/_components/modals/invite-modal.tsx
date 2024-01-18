@@ -11,9 +11,9 @@ import axios from "axios";
 import { Check, Copy, RefreshCw } from "lucide-react";
 import { FC, useState } from "react";
 import { toast } from "sonner";
-import { useServerStore } from "../_hook/use-server-store";
+import { useServerStore } from "../../_hook/use-server-store";
 
-const _InviteModal: FC<CommonModalProps> = ({ ...props }) => {
+const _InviteModal: FC<CommonModalProps> = (props) => {
   const origin = useOrigin();
   const { setCurrentServer, currentServer } = useServerStore();
   const [copied, setCopied] = useState(false);

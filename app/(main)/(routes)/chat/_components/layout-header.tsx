@@ -11,10 +11,11 @@ import {
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { useServerStore } from "../_hook/use-server-store";
 import { ServerWithMembersWithProfiles } from "../_types";
-import { CreateServerModal } from "./create-server-modal";
-import { EditServerModal } from "./edit-server-modal";
-import { InviteModal } from "./invite-modal";
+import { CreateServerModal } from "./modals/create-server-modal";
+import { EditServerModal } from "./modals/edit-server-modal";
+import { InviteModal } from "./modals/invite-modal";
 import { ServerSelect } from "./server-select";
+import { DeleteServerModal } from "./modals/delete-server-modal";
 
 const BaseButton = ({
   icon: Icon,
@@ -92,7 +93,14 @@ export const LayoutHeader = ({
       />
 
       <div className="flex flex-grow justify-end gap-x-3">
-        <BaseButton icon={Trash}>delete</BaseButton>
+        <DeleteServerModal
+          triggerNode={(show) => (
+            <BaseButton onClick={show} icon={Trash}>
+              delete
+            </BaseButton>
+          )}
+        />
+
         <BaseButton icon={LogOut}>exit</BaseButton>
       </div>
     </div>

@@ -26,8 +26,7 @@ const generateData = (
   const videoChannels = server.channels.filter(
     (c) => c.type === ChannelType.VIDEO
   );
-  // const members = server.members.filter((m) => m.profileId !== profile.id);
-  const members = server.members;
+  const members = server.members.filter((m) => m.profileId !== profile.id);
 
   return {
     info: {
@@ -82,8 +81,7 @@ export const LayoutSideList = ({ profile }: { profile: Profile }) => {
   if (!server) return null;
 
   const { data, info } = generateData(server, profile) ?? {};
-  const member = server?.members?.find((m) => m.profileId === profile.id)!;
-  const { role } = member;
+  const role = server?.members?.find((member) => member.profileId === profile.id)?.role;
 
   return (
     <>

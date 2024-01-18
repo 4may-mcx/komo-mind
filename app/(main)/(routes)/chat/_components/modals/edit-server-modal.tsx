@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { useServerStore } from "../_hook/use-server-store";
+import { useServerStore } from "../../_hook/use-server-store";
 
 const formSchema = z.object({
   name: z.string().min(1, {
