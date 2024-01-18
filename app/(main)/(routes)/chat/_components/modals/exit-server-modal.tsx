@@ -8,6 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 import { useServerStore } from "../../_hook/use-server-store";
+import { toast } from "sonner";
 
 const _ExitServerModal: FC<CommonModalProps> = (props) => {
   const router = useRouter();
@@ -27,6 +28,7 @@ const _ExitServerModal: FC<CommonModalProps> = (props) => {
     // } finally {
     //   setIsLoading(false);
     // }
+    toast.error("功能还没做，全都不许走！");
   };
 
   return (

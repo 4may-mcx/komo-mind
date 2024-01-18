@@ -39,7 +39,14 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="komo-theme-2"
           >
-            <Toaster position="bottom-center" />
+            <Toaster
+              position="bottom-left"
+              toastOptions={{
+                style: {
+                  width: "fit-content",
+                },
+              }}
+            />
             {children}
           </ThemeProvider>
         </body>

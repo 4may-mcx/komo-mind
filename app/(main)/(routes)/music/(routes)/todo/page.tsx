@@ -12,7 +12,6 @@ const TodoPage = () => {
       <p>封装select</p>
       <p>chat server 根据用户权限展示可以操作的按钮</p>
       <p>commandDialog支持搜索中文</p>
-      <p>sonar的toast样式修改</p>
       <p>很多可以复用的组件，看看有没有必要整合吧</p>
     </div>
   );
