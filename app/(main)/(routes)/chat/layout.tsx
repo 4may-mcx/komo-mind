@@ -22,10 +22,10 @@ const Layout = async ({ children }: { children: ReactNode }) => {
             </div>
           )}
           <div className="h-[calc(100%-3rem)] flex flex-1">
-            <div className="h-full w-56 border-r-[1.5px] border-neutral-300">
+            <div className="h-full max-w-56 min-w-0 flex-shrink-0 border-r-[1.5px] border-neutral-300">
               <LayoutSideList profile={profile} />
             </div>
-            <div className="h-full w-full flex justify-center items-center">
+            <div className="h-full w-full flex flex-grow justify-center items-center">
               {children}
             </div>
           </div>
