@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Member, MemberRole, Profile } from "@prisma/client";
 import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 
 import { UserAvatar } from "@/components/user-avatar";
@@ -34,10 +34,12 @@ interface ChatItemProps {
   socketQuery: Record<string, string>;
 }
 
-const roleIconMap = {
-  GUEST: null,
-  MODERATOR: <ShieldCheck className="h-4 w-4 ml-2 text-indigo-500" />,
-  ADMIN: <ShieldAlert className="h-4 w-4 ml-2 text-rose-500" />,
+const RoleIconMap: Record<MemberRole, ReactNode | null> = {
+  [MemberRole.GUEST]: null,
+  [MemberRole.ADMIN]: <ShieldCheck className="ml-2 h-4 w-4 text-indigo-500" />,
+  [MemberRole.MODERATOR]: (
+    <ShieldAlert className="ml-2 h-4 w-4 text-green-600" />
+  ),
 };
 
 const formSchema = z.object({
@@ -141,7 +143,7 @@ export const ChatItem = ({
                 {member.profile.name}
               </p>
               <ActionTooltip label={member.role}>
-                {roleIconMap[member.role]}
+                {RoleIconMap[member.role]}
               </ActionTooltip>
             </div>
             <span className="text-xs text-zinc-500 dark:text-zinc-400">
