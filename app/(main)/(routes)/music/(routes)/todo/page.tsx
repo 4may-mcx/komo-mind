@@ -14,6 +14,8 @@ const TodoPage = () => {
       <p>commandDialog支持搜索中文</p>
       <p>很多可以复用的组件，看看有没有必要整合吧</p>
       <p>chat 侧边栏响应式隐藏</p>
+      <p>发完消息自动focus原本的消息框</p>
+      <p>整合socket相关路径和key为常量</p>
     </div>
   );
 };

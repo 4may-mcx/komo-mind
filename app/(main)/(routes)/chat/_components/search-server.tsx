@@ -80,7 +80,9 @@ export const SearchServer = ({
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="搜索所有频道和成员" />
         <CommandList>
-          <CommandEmpty className="flex justify-center p-4">sorry~ 没有结果嘞</CommandEmpty>
+          <CommandEmpty className="flex justify-center p-4">
+            sorry~ 没有结果嘞
+          </CommandEmpty>
           {data?.map(({ label, type, data }) => {
             if (!data.length) return null;
 

@@ -27,15 +27,17 @@ import {
   ShieldCheck,
   ShieldQuestion,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import qs from "query-string";
 import { FC, useState } from "react";
 import { toast } from "sonner";
 import { useServerStore } from "../../_hook/use-server-store";
 import { MemberRole2Label, RoleIconMap } from "../../_types";
 
-const _ManageMemberModal: FC<CommonModalProps> = ({ ...props }) => {
-  const { currentServer: server, setCurrentServer } = useServerStore();
+const _ManageMemberModal: FC<CommonModalProps> = (props) => {
+  const { currentServer: server } = useServerStore();
   const [loadingId, setLoadingId] = useState("");
+  const router = useRouter();
 
   const onRoleChange = async (memberId: string, role: MemberRole) => {
     try {
@@ -48,9 +50,9 @@ const _ManageMemberModal: FC<CommonModalProps> = ({ ...props }) => {
         },
       });
 
-      const _server = await axios.patch(url, { role });
-      setCurrentServer(_server.data);
+      await axios.patch(url, { role });
 
+      router.refresh();
       toast.success("修改成功");
       setLoadingId("");
     } catch (error) {
