@@ -16,6 +16,7 @@ const TodoPage = () => {
       <p>chat 侧边栏响应式隐藏</p>
       <p>发完消息自动focus原本的消息框</p>
       <p>整合socket相关路径和key为常量</p>
+      <p>自己部署项目&livekit</p>
     </div>
   );
 };
