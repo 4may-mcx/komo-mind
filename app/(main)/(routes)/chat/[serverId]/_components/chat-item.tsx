@@ -218,7 +218,7 @@ export const ChatItem = ({
                     </FormItem>
                   )}
                 />
-                <Button disabled={isLoading} size="sm">
+                <Button loading={isLoading} size="sm">
                   Save
                 </Button>
               </form>

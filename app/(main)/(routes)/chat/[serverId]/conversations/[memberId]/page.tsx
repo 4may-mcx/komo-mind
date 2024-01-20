@@ -4,6 +4,8 @@ import { redirectToSignIn } from "@clerk/nextjs";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import { getOrCreateConversation } from "@/lib/conversation";
+import { ChatInput } from "../../_components/chat-input";
+import { ChatMessages } from "../../_components/chat-messages";
 
 const ConversationPage = async ({
   params: { memberId, serverId },
@@ -44,6 +46,23 @@ const ConversationPage = async ({
         name={otherMember.profile.name}
         serverId={serverId}
         type="conversation"
+      />
+      <ChatMessages
+        member={currentMember}
+        name={otherMember.profile.name}
+        chatId={conversation.id}
+        type="conversation"
+        apiUrl="/api/direct-messages"
+        paramKey="conversationId"
+        paramValue={conversation.id}
+        socketUrl="/api/socket/direct-messages"
+        socketQuery={{ conversation: conversation.id }}
+      />
+      <ChatInput
+        name={otherMember.profile.name}
+        type="conversation"
+        apiUrl="/api/socket/direct-messages"
+        query={{ conversationId: conversation.id }}
       />
     </div>
   );
