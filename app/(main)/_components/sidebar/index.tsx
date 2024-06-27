@@ -2,41 +2,37 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import Typography from "@/components/typography";
 import { cn } from "@/lib/utils";
-import {
-  Book,
-  HomeIcon,
-  Joystick,
-  MessageCircleMore,
-  Music2Icon,
-} from "lucide-react";
+import { Joystick, Music2Icon, Settings } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { SidebarContainer } from "./sidebar-container";
 
 const list = [
-  {
-    name: "Home",
-    icon: <HomeIcon />,
-    path: "/",
-  },
-  {
-    name: "Document",
-    icon: <Book />,
-    path: "/documents",
-  },
+  // {
+  //   name: "Home",
+  //   icon: <HomeIcon />,
+  //   path: "/",
+  //   disable: true,
+  // },
+  // {
+  //   name: "Document",
+  //   icon: <Book />,
+  //   path: "/documents",
+  //   disable: true,
+  // },
   {
     name: "Music",
     icon: <Music2Icon />,
     path: "/music",
   },
   {
-    name: "Permission",
+    name: "Playground",
     icon: <Joystick />,
-    path: "/permission",
+    path: "/playground",
   },
   {
-    name: "Chat",
-    icon: <MessageCircleMore />,
-    path: "/chat",
+    name: "Permission",
+    icon: <Settings />,
+    path: "/permission",
   },
 ];
 
@@ -47,8 +43,6 @@ export const Sidebar = () => {
   return (
     <SidebarContainer>
       {() => {
-        // const isClosed = Number(width?.slice(0, -2)) < MIN_RESIZE_WIDTH;
-
         return (
           <div className="h-full pt-1 px-2 flex flex-col items-center gap-y-2 overflow-hidden">
             <div className="w-full translate-x-[-0.2rem]">
@@ -69,7 +63,6 @@ export const Sidebar = () => {
                   key={item.name}
                 >
                   <span className="mr-3">{item.icon}</span>
-                  {/* {!isClosed && <Typography.Small>{item.name}</Typography.Small>} */}
                   <Typography.Small>{item.name}</Typography.Small>
                 </div>
               );

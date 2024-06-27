@@ -4,13 +4,15 @@ export const PageLayout = ({
   children,
   separator,
   title,
+  className,
 }: {
   title: string;
   children: React.ReactNode;
   separator?: React.ReactNode;
+  className?: string;
 }) => {
   return (
-    <div className="h-full w-full dark:bg-[#1F1F1F] p-20">
+    <div className={cn("h-full w-full dark:bg-[#1F1F1F] p-20", className)}>
       <header>
         <Typography.H3>{title}</Typography.H3>
       </header>
