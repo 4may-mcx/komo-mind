@@ -1,10 +1,11 @@
 import BaseTabs, { BaseTabType } from "@/components/base-tabs";
 import { PageLayout } from "@/components/page-layout";
+import { ImportNeededContent } from "./_component/import-needed-content";
 
 const options: BaseTabType[] = [
   {
     title: "按需加载container",
-    render: <>1</>,
+    render: <ImportNeededContent />,
   },
   {
     title: "问卷配置方案",
