@@ -3,7 +3,7 @@ import { getHtmlByMarkdownFilename } from "./utils";
 import "highlight.js/styles/github.css";
 import "github-markdown-css";
 
-export const MarkdownDisplay = async ({
+export const MarkdownFileDisplay = async ({
   filename,
   className,
 }: {

@@ -1,9 +1,9 @@
 import "github-markdown-css";
 import "highlight.js/styles/github.css";
 import { MarkdownHighlightContainer } from "./markdown-highlight-container";
-import { MarkdownDisplay } from "./markdown-display";
+import { MarkdownFileDisplay } from "./markdown-file-display";
 
-export const MarkdownContainer = ({
+export const MarkdownFileContainer = ({
   filename,
   className,
 }: {
@@ -14,7 +14,7 @@ export const MarkdownContainer = ({
 
   return (
     <MarkdownHighlightContainer>
-      <MarkdownDisplay filename={_filename} className={className} />
+      <MarkdownFileDisplay filename={_filename} className={className} />
     </MarkdownHighlightContainer>
   );
 };

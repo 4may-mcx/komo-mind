@@ -2,7 +2,7 @@
 import { ModeToggle } from "@/components/mode-toggle";
 import Typography from "@/components/typography";
 import { cn } from "@/lib/utils";
-import { Joystick, Music2Icon, Settings } from "lucide-react";
+import { Edit, Joystick, Music2Icon, Settings } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { SidebarContainer } from "./sidebar-container";
 
@@ -28,6 +28,11 @@ const list = [
     name: "Playground",
     icon: <Joystick />,
     path: "/playground",
+  },
+  {
+    name: "MindMap",
+    icon: <Edit />,
+    path: "/mindmap",
   },
   {
     name: "Permission",

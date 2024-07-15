@@ -20,7 +20,7 @@ export const PageLayout = ({
       <main
         className={cn(
           "w-full h-full flex overflow-y-auto",
-          !separator && "mt-8"
+          !separator && "mt-4"
         )}
       >
         {children}
