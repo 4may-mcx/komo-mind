@@ -5,12 +5,14 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { useEffect, useState } from "react";
+import { Textarea } from "@/components/ui/textarea";
+import { useEffect, useRef, useState } from "react";
 import { remark } from "remark";
 import html from "remark-html";
-import "highlight.js/styles/github.css";
+import MindMapContent from "./_components/mindmap-content";
+
 import "github-markdown-css";
-import { Textarea } from "@/components/ui/textarea";
+import "highlight.js/styles/github.css";
 
 const markdownToHtml = async (markdown: string) => {
   const result = await remark().use(html).process(markdown);
@@ -36,6 +38,48 @@ const ResizableLayout = ({
   );
 };
 
+const TextEditor = ({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+}) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Tab") {
+      e.preventDefault(); // 阻止默认的切换行为
+
+      const start = e.currentTarget.selectionStart;
+      const end = e.currentTarget.selectionEnd;
+
+      // 设置文本值
+      const newValue =
+        value.substring(0, start) + "    " + value.substring(end);
+      onChange(newValue);
+
+      // 在 DOM 操作完成后设置光标位置
+      requestAnimationFrame(() => {
+        if (textareaRef.current) {
+          textareaRef.current.selectionStart =
+            textareaRef.current.selectionEnd = start + 4;
+        }
+      });
+    }
+  };
+
+  return (
+    <Textarea
+      ref={textareaRef}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className="h-full w-full border-none resize-none dark:bg-[#1F1F1F] dark:text-white"
+      onKeyDown={handleKeyDown}
+    />
+  );
+};
+
 const MindMapPage = () => {
   const [text, setText] = useState<string>("");
   const [html, setHtml] = useState<string>("");
@@ -48,23 +92,22 @@ const MindMapPage = () => {
   }, [text]);
 
   return (
-    <PageLayout title="MindMapPage" className="p-5 pb-20">
+    <PageLayout className="p-5 pb-10">
       <main className="w-full h-full">
         <ResizableLayout
           leftContent={
             <div className="p-2 h-full w-full">
-              <Textarea
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                className="h-full w-full border-none resize-none dark:bg-[#1F1F1F] dark:text-white"
-              />
+              <TextEditor value={text} onChange={setText} />
             </div>
           }
           rightContent={
-            <div
-              className="markdown-body p-2 h-full w-full overflow-auto dark:bg-[#1F1F1F] dark:text-white"
-              dangerouslySetInnerHTML={{ __html: html }}
-            />
+            // <MarkdownHighlightContainer>
+            //   <div
+            //     className="markdown-body p-2 h-full w-full overflow-auto dark:bg-[#1F1F1F] dark:text-white"
+            //     dangerouslySetInnerHTML={{ __html: html }}
+            //   />
+            // </MarkdownHighlightContainer>
+            <MindMapContent />
           }
         />
       </main>
